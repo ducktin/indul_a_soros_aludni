@@ -1,5 +1,9 @@
 #ignore intellij project files
 .idea/
+out/
+
+# ignore vscode dict
+.vscode/
 
 # compiled class files
 bin/
