@@ -1,4 +1,8 @@
+#ignore intellij project files
+.idea/
+
 # compiled class files
+bin/
 *.class
 
 # packaged files
