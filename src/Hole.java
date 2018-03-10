@@ -1,10 +1,14 @@
 public class Hole extends Field {
 
 
+    public Hole(Pushable content) {
+        super(content);
+    }
+
     //destroys things
     @Override
-    public void setContent() {
-        super.setContent();
+    public void setContent(Pushable pushable) {
+        super.setContent(pushable);
     }
 
     @Override

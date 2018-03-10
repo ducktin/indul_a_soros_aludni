@@ -1,5 +1,10 @@
 public class GoalField extends Field {
 
+    public GoalField(Pushable content) {
+        super(content);
+        System.out.printf("GoalField contructor");
+    }
+
     @Override
     public void removePushable() {
         super.removePushable();
