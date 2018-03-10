@@ -1,5 +1,7 @@
 public class Wall implements Pushable{
 
+
+    //always false
     @Override
     public boolean push(Worker worker, Direction direction) {
         System.out.println("push");

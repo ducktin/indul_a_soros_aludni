@@ -2,6 +2,11 @@ public class Switch extends Field {
     private TrapHole trapHole;
     private boolean isActivated;
 
+    public Switch(Pushable content, TrapHole trapHole) {
+        super(content);
+        this.trapHole=trapHole;
+    }
+
     public TrapHole getTrapHole() {
         System.out.println("getTrapHole");
         return trapHole;
@@ -11,7 +16,7 @@ public class Switch extends Field {
     @Override
     public void removePushable() {
         super.removePushable();
-
+        trapHole.changeTrapStatus(false);
     }
 
     @Override
