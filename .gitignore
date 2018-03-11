@@ -1,11 +1,16 @@
+#Zoli bazd...
+_windows/
+codestyles/
+*.xml
+
 #ignore intellij project files
 .idea/
-out/
 
 # ignore vscode dict
 .vscode/
 
 # compiled class files
+out/
 bin/
 *.class
 
