@@ -4,16 +4,16 @@ public class Worker implements Squeezable, Pushable {
     private Integer id;
     private Watcher watcher;
 
-    public Worker(Field field,int id, Watcher watcher){
-        System.out.printf("Worker constructor");
+    public Worker(Field field/*, int id, Watcher watcher*/){
+        System.out.println("Worker constructor");
         this.currentField=field;
         this.points=0;
-        this.id = id;
+        //this.id = id;
         //this.watcher=watcher;
     }
 
     public void move(Direction direction) {
-        System.out.printf("move");
+        System.out.println("move");
         Field nextField = currentField.getNeighbor(direction);
         Pushable neighbor = nextField.getPushable();
         if(neighbor==null){
@@ -49,10 +49,10 @@ public class Worker implements Squeezable, Pushable {
         return currentField;
     }
 
-    public Integer getId(){
+    /*public Integer getId(){
         System.out.printf("getId");
         return id;
-    }
+    }*/
 
     @Override
     public boolean push(Worker worker, Direction direction) {
@@ -88,18 +88,17 @@ public class Worker implements Squeezable, Pushable {
     }
 
     @Override
+    public boolean isMovable() {
+        System.out.println("isMovable");
+        return true;
+    }
+
+    @Override
     public void die() {
         System.out.println("die");
         watcher.decreaseWorkers();
+        currentField.removePushable();
         //TODO:disappear and be nothing, but do not delete from map workers list
         //Maybe put them on a field, which is outside of the map and not shown?
     }
-
-    /*@Override
-    public String toString() {
-        return "Worker{" +
-                "currentField=" + currentField +
-                ", id=" + id +
-                '}';
-    }*/
 }

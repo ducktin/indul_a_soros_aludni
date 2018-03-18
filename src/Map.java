@@ -8,7 +8,7 @@ public class Map {
     //private List<Field> fields;
 
     public void moveWorker(int id, Direction direction){
-        System.out.printf("moveWorker");
+        System.out.println("moveWorker");
             workers.get(id).move(direction);
     }
 
@@ -18,7 +18,7 @@ public class Map {
     }
 
     public void addWorker(Worker worker){
-        System.out.printf("addWorker");
+        System.out.println("addWorker");
             workers.add(worker);
     }
 

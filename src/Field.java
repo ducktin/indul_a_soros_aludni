@@ -1,5 +1,3 @@
-import com.sun.org.apache.bcel.internal.generic.PUSH;
-
 import java.util.EnumMap;
 
 public class Field implements Visitable {
@@ -8,8 +6,10 @@ public class Field implements Visitable {
     protected EnumMap<Direction, Field> neighbors;
 
     public Field(Pushable content){
-
         this.content=content;
+        neighbors=new EnumMap<Direction, Field>(Direction.class);
+    }
+    public Field(){
         neighbors=new EnumMap<Direction, Field>(Direction.class);
     }
 
@@ -30,16 +30,19 @@ public class Field implements Visitable {
 
     public void removePushable(){
         System.out.println("removePushable");
+        content=null;
     }
 
     @Override
     public void visit(Worker worker) {
         System.out.println("visit(Worker worker)");
+        //TODO:setContent(worker)
     }
 
     @Override
     public void visit(Crate crate) {
         System.out.println("visit(Crate crate");
+        //TODO:setContent(crate), and call checkMovability on the crate
     }
 
 

@@ -20,13 +20,16 @@ public class Watcher {
 
     public void decreaseWorkers(){
         System.out.printf("decreaseWorkers");
+        livingWorkers--;
     }
 
     public void decreaseCrates(){
         System.out.printf("decreaseCrates");
+        pushableCrates--;
     }
 
     public void decreaseGoalField(){
         System.out.printf("decreaseGoalField");
+        freeGoalFields--;
     }
 }
