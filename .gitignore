@@ -5,6 +5,7 @@ codestyles/
 
 #ignore intellij project files
 .idea/
+*.iml
 
 # ignore vscode dict
 .vscode/
