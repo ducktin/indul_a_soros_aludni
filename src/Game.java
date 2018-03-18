@@ -12,7 +12,7 @@ public class Game {
         int[] dimensions = new int[2];
 
         String line = in.nextLine();
-        String[] tmp = line.split(" ");
+        String[] tmp = line.split("*");
         dimensions[0] = Integer.parseInt(tmp[0]);
         dimensions[1] = Integer.parseInt(tmp[1]);
 
