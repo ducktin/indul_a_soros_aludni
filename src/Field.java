@@ -43,6 +43,7 @@ public class Field implements Visitable {
     public void visit(Crate crate) {
         System.out.println("visit(Crate crate");
         this.setContent(crate); // The current crate is going to be the content.
+        crate.checkMovability();
     }
 
 

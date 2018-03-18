@@ -1,8 +1,10 @@
 public class GoalField extends Field {
+    private Watcher watcher;
 
-    public GoalField(Pushable content) {
+    public GoalField(Pushable content /*Watcher watcher*/) {
         super(content);
         System.out.printf("GoalField contructor");
+        // watcher = watcher; TODO: add watcher
     }
 
     @Override
@@ -14,15 +16,14 @@ public class GoalField extends Field {
     @Override
     public void visit(Worker worker) {
         super.visit(worker);
-        this.setContent(worker); // The content is the current worker, but nothing happens.
     }
 
     @Override
     public void visit(Crate crate) {
         super.visit(crate);
-        //TODO:setContent(crate), give point to the worker, call immobilise on crate, decrease the number of the crates.
-        // ??? How do we know here, who pushed it? the crate got it, but didn't passed
-        this.setContent(crate);
+        crate.getLastMovedBy().givePoint();
+        crate.immobilise();
+
 
     }
 }

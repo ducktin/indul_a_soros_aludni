@@ -3,6 +3,7 @@ public class Crate implements Pushable {
     private Field currentField;
     private boolean movable;
     private Watcher watcher;
+    private Worker lastMovedBy;
 
     public Crate(Field field /*,Watcher watcher*/){
         System.out.println("Crate constructor");
@@ -84,6 +85,7 @@ public class Crate implements Pushable {
         System.out.printf("push");
         Field nextField = currentField.getNeighbor(direction);
         Pushable neighbor = nextField.getPushable();
+        lastMovedBy = worker;
 
         if(neighbor==null){
             currentField.removePushable();
@@ -100,6 +102,12 @@ public class Crate implements Pushable {
                 return false;
             }
         }
+    }
+
+    public Worker getLastMovedBy(){
+        System.out.println("Get last moved by");
+        return this.lastMovedBy;
+
     }
 
     @Override

@@ -14,18 +14,32 @@ public class TrapHole extends Hole {
     public void changeTrapStatus(boolean value){
         System.out.println("changeTrapStatus");
         status=value;
+        if(status){                 // If activated, then checks the content.
+            if(content!=null) {     // If there is content, then it destroys it.
+                content.destroy();
+                setContent(null);
+            }
+        }
     }
 
 
     @Override
     public void visit(Worker worker) {
-        super.visit(worker);
-        //TODO:setContent(worker), and destroy worker if activated
+        System.out.printf("Visit worker");
+        setContent(worker);
+        if(status){
+            worker.destroy();
+            setContent(null);
+        }
     }
 
     @Override
     public void visit(Crate crate) {
-        super.visit(crate);
-        //TODO:setContent(crate), and destroy crate if activated
+        System.out.printf("Visit crate");
+        setContent(crate);
+        if(status){
+            crate.destroy();
+            setContent(null);
+        }
     }
 }

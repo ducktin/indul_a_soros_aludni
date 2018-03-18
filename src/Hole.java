@@ -14,16 +14,14 @@ public class Hole extends Field {
     @Override
     public void visit(Worker worker) {
         super.visit(worker);
-        //TODO: decrease the number of the workers
-        this.setContent(worker);
         content.destroy();
+        setContent(null);
     }
 
     @Override
     public void visit(Crate crate) {
         super.visit(crate);
-        //TODO: decrease the nuber of the crates
-        this.setContent(crate);
         content.destroy();
+        setContent(null);
     }
 }

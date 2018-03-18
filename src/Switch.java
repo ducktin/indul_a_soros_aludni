@@ -21,14 +21,12 @@ public class Switch extends Field {
 
     @Override
     public void visit(Worker worker) {
-        super.visit(worker);
-        //TODO:setContent(worker), do nothing
-        setContent(worker); // The content is the current worker, and nothong else happens.
+        super.visit(worker); // The content is the current worker, and nothong else happens.
     }
 
     @Override
     public void visit(Crate crate) {
         super.visit(crate);
-        //TODO:setContent(crate), trapHole.changeTrapStatus(true);
+        trapHole.changeTrapStatus(true);
     }
 }
