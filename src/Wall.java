@@ -1,6 +1,11 @@
 public class Wall implements Pushable{
 
 
+    public boolean isMovable() {
+        System.out.println("isMovable");
+        return false;
+    }
+
     //always false
     @Override
     public boolean push(Worker worker, Direction direction) {

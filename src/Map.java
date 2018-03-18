@@ -7,8 +7,8 @@ public class Map {
     private Field[][] fields;
 
     public void moveWorker(int id, Direction direction){
-        System.out.printf("moveWorker");
-        workers.get(id).move(direction);
+        System.out.println("moveWorker");
+            workers.get(id).move(direction);
     }
 
     /*    x0 x1       x2        x3 x4        x5        x6 x7
@@ -27,8 +27,8 @@ public class Map {
     }
 
     public void addWorker(Worker worker){
-        System.out.printf("addWorker");
-        workers.add(worker);
+        System.out.println("addWorker");
+            workers.add(worker);
     }
 
     public void addField(int xPos, int yPos, Field field){
