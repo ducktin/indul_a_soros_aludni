@@ -44,13 +44,14 @@ public class App {
         Scanner scanner = new Scanner(System.in);
 
         int choice = -1;
-        while(choice < 1 || choice > options.length)
+        while(choice < 1 || choice > options.length) {
             System.out.print(inputString);
             try {
                 choice = scanner.nextInt();
-            } catch (InputMismatchException e){
+            } catch (InputMismatchException e) {
                 choice = -1;
             }
+        }
 
         return choice;
     }
