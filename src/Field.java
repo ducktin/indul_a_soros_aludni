@@ -1,3 +1,5 @@
+
+
 import java.util.EnumMap;
 
 public class Field implements Visitable {
@@ -7,9 +9,6 @@ public class Field implements Visitable {
 
     public Field(Pushable content){
         this.content=content;
-        neighbors=new EnumMap<Direction, Field>(Direction.class);
-    }
-    public Field(){
         neighbors=new EnumMap<Direction, Field>(Direction.class);
     }
 
