@@ -4,11 +4,13 @@ public class Crate implements Pushable {
     private boolean movable;
     private Watcher watcher;
     private Worker lastMovedBy;
+    private String name;
 
-    public Crate(Field field /*,Watcher watcher*/){
+    public Crate(Field field, String name /*,Watcher watcher*/){
         System.out.println("Crate constructor");
         this.currentField=field;
         movable=true;
+        name = name;
         //this.watcher=watcher;
     }
 
@@ -17,23 +19,23 @@ public class Crate implements Pushable {
     }
 
     public Field getCurrentField() {
-        System.out.println("getCurrentField");
+        System.out.println("getCurrentField of "+this.name);
         return currentField;
     }
 
     public boolean isMovable() {
-        System.out.println("isMovable");
+        System.out.println(this.name+" isMovable?");
         return movable;
     }
 
     public void immobilise(){
-        System.out.println("immobilise");
+        System.out.println("immobilise "+this.name);
         movable=false;
         watcher.decreaseCrates();
     }
 
     public void checkMovability(){
-        System.out.println("checkMovability");
+        System.out.println("checkMovability of "+this.name);
         int notMovableAround =0;
         boolean upperMovable=true;
         boolean righterMovable=true;
@@ -82,7 +84,7 @@ public class Crate implements Pushable {
 
     @Override
     public boolean push(Worker worker, Direction direction) {
-        System.out.printf("push");
+        System.out.printf("push "+this.name);
         Field nextField = currentField.getNeighbor(direction);
         Pushable neighbor = nextField.getPushable();
         lastMovedBy = worker;
@@ -105,14 +107,14 @@ public class Crate implements Pushable {
     }
 
     public Worker getLastMovedBy(){
-        System.out.println("Get last moved by");
+        System.out.println("Get last moved by of "+this.name);
         return this.lastMovedBy;
 
     }
 
     @Override
     public void destroy() {
-        System.out.println("destroy");
+        System.out.println("destroy "+this.name);
         watcher.decreaseCrates();
         setField(null);
     }

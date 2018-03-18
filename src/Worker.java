@@ -3,17 +3,19 @@ public class Worker implements Squeezable, Pushable {
     private int points;
     private Integer id;
     private Watcher watcher;
+    protected String name;
 
-    public Worker(Field field/*, int id, Watcher watcher*/){
+    public Worker(Field field, String name/*, int id, Watcher watcher*/){
         System.out.println("Worker constructor");
         this.currentField=field;
         this.points=0;
+        this.name = name;
         //this.id = id;
         //this.watcher=watcher;
     }
 
     public void move(Direction direction) {
-        System.out.println("move");
+        System.out.println("move "+this.name);
         Field nextField = currentField.getNeighbor(direction);
         Pushable neighbor = nextField.getPushable();
         if(neighbor==null){
@@ -30,22 +32,22 @@ public class Worker implements Squeezable, Pushable {
     }
 
     public int getPoints() {
-        System.out.println("getPoint");
+        System.out.println("getPoint of"+this.name);
         return points;
     }
 
     public void givePoint() {
-        System.out.println("givePoints");
+        System.out.println("givePoints to "+this.name);
         points++;
     }
 
     public void setField(Field nextField){
-        System.out.println("setField");
+        System.out.println("setField of "+this.name);
         this.currentField=nextField;
     }
 
     public Field getCurrentField() {
-        System.out.println("getCurrentField");
+        System.out.println("getCurrentField of "+this.name);
         return currentField;
     }
 
@@ -56,7 +58,7 @@ public class Worker implements Squeezable, Pushable {
 
     @Override
     public boolean push(Worker worker, Direction direction) {
-        System.out.println("push");
+        System.out.println("push "+this.name);
 
         Field nextField = currentField.getNeighbor(direction);
         Pushable neighbor = nextField.getPushable();
@@ -81,24 +83,24 @@ public class Worker implements Squeezable, Pushable {
 
     @Override
     public void destroy() {
-        System.out.println("destroy");
+        System.out.println("destroy "+this.name);
         watcher.decreaseWorkers();
         //TODO:disappear and be nothing, but do not delete from map workers list
-        //Maybe put them on a field, which is outside of the map and not shown?
+        //Maybe put them on a field, which is outside of the map and not shown? AND disable input
     }
 
     @Override
     public boolean isMovable() {
-        System.out.println("isMovable");
+        System.out.println("isMovable "+this.name);
         return true;
     }
 
     @Override
     public void die() {
-        System.out.println("die");
+        System.out.println("die "+this.name);
         watcher.decreaseWorkers();
         currentField.removePushable();
         //TODO:disappear and be nothing, but do not delete from map workers list
-        //Maybe put them on a field, which is outside of the map and not shown?
+        //Maybe put them on a field, which is outside of the map and not shown? AND disable input
     }
 }

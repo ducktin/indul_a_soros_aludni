@@ -48,7 +48,7 @@ public class Game {
     private Field parseChar(String f) {
         Field field = null;
         switch (f) {
-            case " ": field = new Field(null);
+            case " ": field = new Field(null,""); // TODO: naming
         }
 
         return field;

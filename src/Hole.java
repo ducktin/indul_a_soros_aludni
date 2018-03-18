@@ -1,8 +1,8 @@
 public class Hole extends Field {
 
 
-    public Hole(Pushable content) {
-        super(content);
+    public Hole(Pushable content, String name) {
+        super(content, name);
     }
 
     //destroys things

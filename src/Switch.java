@@ -2,13 +2,13 @@ public class Switch extends Field {
     private TrapHole trapHole;
     private boolean isActivated;
 
-    public Switch(Pushable content, TrapHole trapHole) {
-        super(content);
+    public Switch(Pushable content, TrapHole trapHole, String name) {
+        super(content, name);
         this.trapHole=trapHole;
     }
 
     public TrapHole getTrapHole() {
-        System.out.println("getTrapHole");
+        System.out.println("getTrapHole of"+this.name);
         return trapHole;
     }
 
