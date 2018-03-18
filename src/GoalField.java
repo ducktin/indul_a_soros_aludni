@@ -14,13 +14,15 @@ public class GoalField extends Field {
     @Override
     public void visit(Worker worker) {
         super.visit(worker);
-        //TODO:setContent(worker), and do nothing
+        this.setContent(worker); // The content is the current worker, but nothing happens.
     }
 
     @Override
     public void visit(Crate crate) {
         super.visit(crate);
-        //TODO:setContent(crate), and give point to the worker, call immobilise on crate
+        //TODO:setContent(crate), give point to the worker, call immobilise on crate, decrease the number of the crates.
         // ??? How do we know here, who pushed it? the crate got it, but didn't passed
+        this.setContent(crate);
+
     }
 }

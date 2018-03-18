@@ -36,13 +36,13 @@ public class Field implements Visitable {
     @Override
     public void visit(Worker worker) {
         System.out.println("visit(Worker worker)");
-        //TODO:setContent(worker)
+        this.setContent(worker); // The current worker is going to be the content.
     }
 
     @Override
     public void visit(Crate crate) {
         System.out.println("visit(Crate crate");
-        //TODO:setContent(crate), and call checkMovability on the crate
+        this.setContent(crate); // The current crate is going to be the content.
     }
 
 

@@ -23,6 +23,7 @@ public class Switch extends Field {
     public void visit(Worker worker) {
         super.visit(worker);
         //TODO:setContent(worker), do nothing
+        setContent(worker); // The content is the current worker, and nothong else happens.
     }
 
     @Override
