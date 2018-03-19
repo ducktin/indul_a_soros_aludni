@@ -4,7 +4,7 @@ public class GoalField extends Field {
     public GoalField(Pushable content, String name /*Watcher watcher*/) {
         super(content, name);
         System.out.printf("GoalField contructor "+this.name);
-        // watcher = watcher; TODO: add watcher
+        this.watcher = Watcher.getInstance();
     }
 
     @Override
@@ -23,7 +23,6 @@ public class GoalField extends Field {
         super.visit(crate);
         crate.getLastMovedBy().givePoint();
         crate.immobilise();
-
-
+        watcher.decreaseGoalField();
     }
 }

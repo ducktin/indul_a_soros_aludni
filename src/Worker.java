@@ -4,6 +4,7 @@ public class Worker implements Squeezable, Pushable {
     private Integer id;
     private Watcher watcher;
     protected String name;
+    private boolean alive = true;
 
     public Worker(Field field, String name){
         System.out.println("Worker constructor");
@@ -84,8 +85,7 @@ public class Worker implements Squeezable, Pushable {
     public void destroy() {
         System.out.println("destroy "+this.name);
         watcher.decreaseWorkers();
-        //TODO:disappear and be nothing, but do not delete from map workers list
-        //Maybe put them on a field, which is outside of the map and not shown? AND disable input
+        alive = false;
     }
 
     @Override
@@ -99,7 +99,6 @@ public class Worker implements Squeezable, Pushable {
         System.out.println("die "+this.name);
         watcher.decreaseWorkers();
         currentField.removePushable();
-        //TODO:disappear and be nothing, but do not delete from map workers list
-        //Maybe put them on a field, which is outside of the map and not shown? AND disable input
+        alive= false;
     }
 }

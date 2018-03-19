@@ -6,7 +6,7 @@ public class Watcher {
     private int pushableCrates;
     private int freeGoalFields;
 
-    protected Watcher() {
+    private Watcher() {
         //exists only to defeat instantiation
     }
 
