@@ -34,6 +34,7 @@ public class App {
                     break;
             } catch (InputMismatchException e) {
                 choice = -1;
+                scanner.nextLine();
             }
         }
 
