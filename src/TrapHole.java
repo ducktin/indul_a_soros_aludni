@@ -7,12 +7,13 @@ public class TrapHole extends Hole {
     }
 
     public boolean getStatus(){
-        System.out.println("getStatus of"+this.name);
+        System.out.println("TrapHole, " + this.name + ", getStatus");
         return status;
     }
 
     public void changeTrapStatus(boolean value){
-        System.out.println("changeTrapStatus "+this.name);
+        if(value){System.out.println("TrapHole, " + this.name + ", changeTrapStatus, new status: true");}
+        else{System.out.println("TrapHole, " + this.name + ", changeTrapStatus, new status: false");}
         status=value;
         if(status){                 // If activated, then checks the content.
             if(content!=null) {     // If there is content, then it destroys it.
@@ -27,9 +28,10 @@ public class TrapHole extends Hole {
     public void visit(Worker worker) {
         System.out.printf(this.name+" Visit worker");
         setContent(worker);
+        worker.setField(this);
         if(status){
             worker.destroy();
-            setContent(null);
+            worker.setField(null);
         }
     }
 

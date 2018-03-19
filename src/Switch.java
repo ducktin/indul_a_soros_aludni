@@ -8,7 +8,7 @@ public class Switch extends Field {
     }
 
     public TrapHole getTrapHole() {
-        System.out.println("getTrapHole of"+this.name);
+        System.out.println("Switch, " + this.name + ", getTrapHole");
         return trapHole;
     }
 
@@ -21,7 +21,7 @@ public class Switch extends Field {
 
     @Override
     public void visit(Worker worker) {
-        super.visit(worker); // The content is the current worker, and nothong else happens.
+        super.visit(worker); // The content is the current worker, and nothing else happens.
     }
 
     @Override

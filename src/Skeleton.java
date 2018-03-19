@@ -494,6 +494,10 @@ public class Skeleton {
         Worker w2 = new Worker(worker2Field, "worker2");
         worker2Field.setContent(w2);
 
+        //Wall setup
+        Wall wall = new Wall();
+        wallField.setContent(wall);
+
         // Crates setup
         Crate c = new Crate(crateField, "crate");
         crateField.setContent(c);
@@ -504,6 +508,7 @@ public class Skeleton {
         map.addField(0,1,crateField);
         map.addField(0,2,worker2Field);
         map.addField(0,3,wallField);
+        map.addWorker(w1);
         map.addWorker(w2);
 
         waitInput("D");

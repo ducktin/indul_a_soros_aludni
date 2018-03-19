@@ -8,35 +8,41 @@ public class Crate implements Pushable {
     private String name;
 
     public Crate(Field field, String name ){
-        System.out.println("Crate constructor");
+        System.out.println("Crate " + name + " constructor " + field.getName());
         this.currentField=field;
         this.movable=true;
         this.name = name;
         this.watcher=Watcher.getInstance();
     }
 
+    public String getName(){
+       // System.out.println("Crate " + "getName" + this.name);
+        return this.name;
+    }
+
     public void setField(Field field){
+        System.out.println("Crate, " + this.name + ", setField, New field: " + field.getName());
         this.currentField=field;
     }
 
     public Field getCurrentField() {
-        System.out.println("getCurrentField of "+this.name);
+        System.out.println("Crate, " + this.name + ", getCurrentField,  CurrentField:" + currentField.getName());
         return currentField;
     }
 
     public boolean isMovable() {
-        System.out.println(this.name+" isMovable?");
+        System.out.println("Crate, " + this.name + ", isMovable?, CurrentField:" + currentField.getName());
         return movable;
     }
 
     public void immobilise(){
-        System.out.println("immobilise "+this.name);
+        System.out.println("Crate, " + this.name + ", immobilise, CurrentField:" + currentField.getName());
         movable=false;
         watcher.decreaseCrates();
     }
 
     public void checkMovability(){
-        System.out.println("checkMovability of "+this.name);
+        System.out.println("BEGIN/////checkMovability of "+this.name+"/////BEGIN");
         int notMovableAround =0;
         boolean upperMovable=true;
         boolean righterMovable=true;
@@ -83,17 +89,18 @@ public class Crate implements Pushable {
         if(notMovableAround>=3){
             immobilise();
         }
-        if(upperMovable && (righterMovable || lefterMovable)){
+        if(!upperMovable && (!righterMovable || !lefterMovable)){
             immobilise();
         }
-        if(downerMovable && (righterMovable || lefterMovable)){
+        if(!downerMovable && (!righterMovable || !lefterMovable)){
             immobilise();
         }
+        System.out.println("END/////checkMovability"+this.name+"/////END");
     }
 
     @Override
     public boolean push(Worker worker, Direction direction) {
-        System.out.print("push "+this.name);
+        System.out.println("Crate, " + this.name + ", push, CurrentField:" + currentField.getName());
         Field nextField = currentField.getNeighbor(direction);
         Pushable neighbor = nextField.getPushable();
         lastMovedBy = worker;
@@ -116,14 +123,14 @@ public class Crate implements Pushable {
     }
 
     public Worker getLastMovedBy(){
-        System.out.println("Get last moved by of "+this.name);
+        System.out.println("Crate, " + this.name + ", getLastMovedBy, CurrentField:" + currentField.getName());
         return this.lastMovedBy;
 
     }
 
     @Override
     public void destroy() {
-        System.out.println("destroy "+this.name);
+        System.out.println("Crate, " + this.name + ", destroy, CurrentField:" + currentField.getName());
         watcher.decreaseCrates();
         setField(null);
     }

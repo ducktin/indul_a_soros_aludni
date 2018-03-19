@@ -11,7 +11,7 @@ public class Watcher {
     }
 
     public static Watcher getInstance() {
-        System.out.println("getInstance");
+        System.out.println("Witcher, getInstance");
         if (instance == null) {
             instance = new Watcher();
         }
@@ -19,17 +19,17 @@ public class Watcher {
     }
 
     public void decreaseWorkers(){
-        System.out.printf("decreaseWorkers");
+        System.out.println("Watcher, decreaseWorkers");
         livingWorkers--;
     }
 
     public void decreaseCrates(){
-        System.out.printf("decreaseCrates");
+        System.out.println("Watcher, decreaseCrates");
         pushableCrates--;
     }
 
     public void decreaseGoalField(){
-        System.out.printf("decreaseGoalField");
+        System.out.println("Watcher, decreaseGoalField");
         freeGoalFields--;
     }
 }
