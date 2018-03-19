@@ -22,7 +22,7 @@ public class Skeleton {
     private static void waitInput(String wait){
         String typed = "";
         while(!typed.equalsIgnoreCase(wait)){
-            System.out.print("Type "+wait+": ");
+            System.out.print("Type \""+wait+"\": ");
             typed = in.nextLine();
         }
 
