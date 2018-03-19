@@ -1,5 +1,8 @@
 public class Wall implements Pushable{
 
+    public Wall(){
+        System.out.println("Wall constructor");
+    }
 
     public boolean isMovable() {
         System.out.println("isMovable");

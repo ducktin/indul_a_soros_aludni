@@ -1,17 +1,18 @@
 
 public class Crate implements Pushable {
+
     private Field currentField;
     private boolean movable;
     private Watcher watcher;
     private Worker lastMovedBy;
     private String name;
 
-    public Crate(Field field, String name /*,Watcher watcher*/){
+    public Crate(Field field, String name ){
         System.out.println("Crate constructor");
         this.currentField=field;
-        movable=true;
-        name = name;
-        //this.watcher=watcher;
+        this.movable=true;
+        this.name = name;
+        this.watcher=Watcher.getInstance();
     }
 
     public void setField(Field field){
@@ -42,33 +43,41 @@ public class Crate implements Pushable {
         boolean lefterMovable=true;
         boolean downerMovable=true;
 
-        Pushable neighbor = currentField.getNeighbor(Direction.UP).getPushable();
-        if(neighbor!=null){
-            if(!neighbor.isMovable()){
-                notMovableAround++;
-                upperMovable=false;
+        if(currentField.getNeighbor(Direction.UP) != null) {
+            Pushable neighbor = currentField.getNeighbor(Direction.UP).getPushable();
+            if (neighbor != null) {
+                if (!neighbor.isMovable()) {
+                    notMovableAround++;
+                    upperMovable = false;
+                }
             }
         }
 
-        neighbor = currentField.getNeighbor(Direction.RIGHT).getPushable();
+        if(currentField.getNeighbor(Direction.RIGHT) != null){
+            Pushable neighbor = currentField.getNeighbor(Direction.RIGHT).getPushable();
         if(neighbor!=null){
             if(!neighbor.isMovable()){
                 notMovableAround++;
                 righterMovable=false;
             }
         }
-        neighbor = currentField.getNeighbor(Direction.LEFT).getPushable();
-        if(neighbor!=null){
-            if(!neighbor.isMovable()){
-                notMovableAround++;
-                lefterMovable=false;
+        }
+        if(currentField.getNeighbor(Direction.LEFT) != null) {
+            Pushable neighbor = currentField.getNeighbor(Direction.LEFT).getPushable();
+            if (neighbor != null) {
+                if (!neighbor.isMovable()) {
+                    notMovableAround++;
+                    lefterMovable = false;
+                }
             }
         }
-        neighbor = currentField.getNeighbor(Direction.DOWN).getPushable();
-        if(neighbor!=null){
-            if(!neighbor.isMovable()){
-                notMovableAround++;
-                downerMovable=false;
+        if(currentField.getNeighbor(Direction.DOWN) != null) {
+            Pushable neighbor = currentField.getNeighbor(Direction.DOWN).getPushable();
+            if (neighbor != null) {
+                if (!neighbor.isMovable()) {
+                    notMovableAround++;
+                    downerMovable = false;
+                }
             }
         }
         if(notMovableAround>=3){
@@ -84,7 +93,7 @@ public class Crate implements Pushable {
 
     @Override
     public boolean push(Worker worker, Direction direction) {
-        System.out.printf("push "+this.name);
+        System.out.print("push "+this.name);
         Field nextField = currentField.getNeighbor(direction);
         Pushable neighbor = nextField.getPushable();
         lastMovedBy = worker;

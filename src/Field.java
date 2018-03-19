@@ -10,13 +10,17 @@ public class Field implements Visitable {
 
     public Field(Pushable content, String name){
         this.content=content;
-        neighbors=new EnumMap<Direction, Field>(Direction.class);
-        name = name;
+        neighbors= new EnumMap<>(Direction.class);
+        this.name = name;
     }
 
     public Field getNeighbor(Direction direction){
         System.out.println("getNeighbor of "+this.name);
         return neighbors.get(direction);
+    }
+    public void setNeighbor(Direction direction, Field field){
+        System.out.println("setNeighbor of "+this.name);
+        neighbors.put(direction, field);
     }
 
     public Pushable getPushable(){

@@ -11,16 +11,6 @@ public class Map {
             workers.get(id).move(direction);
     }
 
-    /*    x0 x1       x2        x3 x4        x5        x6 x7
-       y0                                fields[5][0]
-       y1
-       y2
-       y3
-       y4
-       y5         fields[2][5]
-       y6
-       y7
-        */
     Map(int mapWidth, int mapHeight){
         workers=new ArrayList<>();
         fields = new Field[mapWidth][mapHeight];

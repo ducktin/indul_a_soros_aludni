@@ -5,13 +5,12 @@ public class Worker implements Squeezable, Pushable {
     private Watcher watcher;
     protected String name;
 
-    public Worker(Field field, String name/*, int id, Watcher watcher*/){
+    public Worker(Field field, String name){
         System.out.println("Worker constructor");
         this.currentField=field;
         this.points=0;
         this.name = name;
-        //this.id = id;
-        //this.watcher=watcher;
+        this.watcher=Watcher.getInstance();
     }
 
     public void move(Direction direction) {
