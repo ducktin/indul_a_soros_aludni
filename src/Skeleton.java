@@ -467,7 +467,7 @@ public class Skeleton {
         map.addWorker(w2);
 
         waitInput("D");
-        map.moveWorker(1, Direction.RIGHT);
+        map.moveWorker(0, Direction.RIGHT);
 
         System.out.println("End of WorkerPushesWorkerToEmptyField");
         in.nextLine();

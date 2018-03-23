@@ -5,13 +5,17 @@ public class Worker implements Squeezable, Pushable {
     private Watcher watcher;
     protected String name;
     private boolean alive = true;
+    private int strength;
+    private int honeyBombs=3;
+    private int oilBarrels=3;
 
-    public Worker(Field field, String name){
+    public Worker(Field field, String name /*,int strength*/){
         System.out.println("Worker, " + name + ", constructor, " + field.getName());
         this.currentField=field;
         this.points=0;
         this.name = name;
         this.watcher=Watcher.getInstance();
+        //this.strength = strength;
     }
 
     public void move(Direction direction) {
@@ -51,7 +55,7 @@ public class Worker implements Squeezable, Pushable {
         return currentField;
     }
 
-
+    //TODO: rerwork for slippinness
     @Override
     public boolean push(Worker worker, Direction direction) {
         System.out.println("Worker, " + this.name + ", push, " + currentField.getName());
@@ -102,5 +106,15 @@ public class Worker implements Squeezable, Pushable {
         watcher.decreaseWorkers();
         currentField.removePushable();
         alive= false;
+    }
+
+    public void dropOil(){
+        System.out.println("Worker, " + this.name + ", dropOil, " + currentField.getName());
+        this.currentField.makeSlippery();
+    }
+
+    public void dropHoney(){
+        System.out.println("Worker, " + this.name + ", dropHoney, " + currentField.getName());
+        this.currentField.makeSticky();
     }
 }
