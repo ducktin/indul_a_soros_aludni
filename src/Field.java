@@ -1,5 +1,3 @@
-
-
 import java.util.EnumMap;
 
 public class Field implements Visitable {
@@ -7,7 +5,7 @@ public class Field implements Visitable {
     protected Pushable content;
     protected EnumMap<Direction, Field> neighbors;
     protected String name;
-    private int slipperiness = 0;
+    protected int slipperiness = 0;
 
     public Field(Pushable content, String name) {
         System.out.println("Field, " + name + " constructor");
