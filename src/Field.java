@@ -5,7 +5,7 @@ public class Field implements Visitable {
     protected Pushable content;
     protected EnumMap<Direction, Field> neighbors;
     protected String name;
-    protected int slipperiness = 0;
+    protected int slipperiness = 1;
 
     public Field(Pushable content, String name) {
         System.out.println("Field, " + name + " constructor");
@@ -70,11 +70,15 @@ public class Field implements Visitable {
 
     public void makeSlippery() {
         System.out.println("Field, " + this.name + ", makeSlippery");
-        this.slipperiness = -1;
+        if (slipperiness >= 1) {
+            this.slipperiness--;
+        }
     }
 
     public void makeSticky() {
         System.out.println("Field, " + this.name + ", makeSlippery");
-        this.slipperiness = 1;
+        if (slipperiness <= 1) {
+            this.slipperiness++;
+        }
     }
 }

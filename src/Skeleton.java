@@ -14,7 +14,8 @@ public class Skeleton {
             "5.4.10 Worker Pushes Crate on a Switch",
             "5.4.11 Worker Pushes Crate onto a GoalField",
             "5.4.12 Worker Pushes Worker to an Empty Field",
-            "5.4.13 Worker Pushes Crate Pushes Worker to a Wall"
+            "5.4.13 Worker Pushes Crate Pushes Worker to a Wall",
+            "14 StrengthTest"
     };
 
     private static Scanner in = new Scanner(System.in);
@@ -76,9 +77,62 @@ public class Skeleton {
             case 13:
                 WorkerPushesCratePushesWorkerToWall();
                 break;
+            case 14:
+                StrengthTest();
+                break;
             default:
                 return;
         }
+    }
+
+    private static void StrengthTest() {
+        //Field setup
+        Field field1 = new Field(null, "field1");
+        Field field2 = new Field(null, "field2");
+        Field field3 = new Field(null, "field3");
+        Field field4 = new Field(null, "field4");
+        Field field5 = new Field(null, "field5");
+
+        field1.setNeighbor(Direction.RIGHT, field2);
+        field2.setNeighbor(Direction.LEFT, field1);
+        field2.setNeighbor(Direction.RIGHT, field3);
+        field3.setNeighbor(Direction.LEFT, field2);
+        field3.setNeighbor(Direction.RIGHT, field4);
+        field4.setNeighbor(Direction.LEFT, field3);
+        field4.setNeighbor(Direction.RIGHT, field5);
+        field5.setNeighbor(Direction.LEFT, field4);
+
+        //Worker setuo
+        Worker w1= new Worker(field1, "w1");
+        w1.setStrength(3);
+        field1.setContent(w1);
+        Worker w2 = new Worker(field3, "w2");
+        field3.setContent(w2);
+
+        Crate c1 = new Crate(field2, "c1");
+        field2.setContent(c1);
+        Crate c2 = new Crate(field4, "c2");
+        field4.setContent(c2);
+        /*Crate c3 = new Crate(field4, "c3");
+        field5.setContent(c3);*/
+
+
+        //map setup
+        Map map = new Map(5,1);
+        map.addField(0,0,field1);
+        map.addField(0,1,field2);
+        map.addField(0,2,field3);
+        map.addField(0,3,field4);
+        map.addField(0,4,field5);
+
+        map.addWorker(w1);
+        map.addWorker(w2);
+
+        waitInput("D");
+        map.moveWorker(0, Direction.RIGHT);
+
+        System.out.println("End of Strength test");
+        in.nextLine();
     }
 
     private static void workerMovesToEmptyField() {

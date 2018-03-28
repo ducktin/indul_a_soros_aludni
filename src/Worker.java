@@ -6,29 +6,30 @@ public class Worker implements Squeezable, Pushable {
     protected String name;
     private boolean alive = true;
     private int strength;
-    private int honeyBombs=3;
-    private int oilBarrels=3;
+    private int honeyBombs = 3;
+    private int oilBarrels = 3;
 
-    public Worker(Field field, String name /*,int strength*/){
+    public Worker(Field field, String name /*,int strength*/) {
         System.out.println("Worker, " + name + ", constructor, " + field.getName());
-        this.currentField=field;
-        this.points=0;
+        this.currentField = field;
+        this.points = 0;
         this.name = name;
-        this.watcher=Watcher.getInstance();
+        this.watcher = Watcher.getInstance();
         //this.strength = strength;
     }
+
 
     public void move(Direction direction) {
         System.out.println("Worker, " + this.name + ", move, " + currentField.getName());
         Field nextField = currentField.getNeighbor(direction);
         Pushable neighbor = nextField.getPushable();
-        if(neighbor==null){
+        int neededStrength = 0;
+        if (neighbor == null) {
             currentField.removePushable();
             nextField.visit(this);
-        }
-        else{
-            boolean success = neighbor.push(this, direction);
-            if(success){
+        } else {
+            boolean success = neighbor.push(this, direction, neededStrength);
+            if (success) {
                 currentField.removePushable();
                 nextField.visit(this);
             }
@@ -45,9 +46,9 @@ public class Worker implements Squeezable, Pushable {
         points++;
     }
 
-    public void setField(Field nextField){
+    public void setField(Field nextField) {
         System.out.println("Worker, " + this.name + ", setField from: " + currentField.getName() + " to: " + nextField.getName());
-        this.currentField=nextField;
+        this.currentField = nextField;
     }
 
     public Field getCurrentField() {
@@ -55,29 +56,47 @@ public class Worker implements Squeezable, Pushable {
         return currentField;
     }
 
-    //TODO: rerwork for slippinness
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    //TODO: rerwork for slippinness--> only else branch should be modified
     @Override
-    public boolean push(Worker worker, Direction direction) {
+    public boolean push(Worker worker, Direction direction, int neededStrength) {
         System.out.println("Worker, " + this.name + ", push, " + currentField.getName());
+
+        //Add the current field slippiness to the needed Strength to push the chain
+        neededStrength += this.getCurrentField().getSlippiness();
 
         Field nextField = currentField.getNeighbor(direction);
         Pushable neighbor = nextField.getPushable();
 
-        if(neighbor==null){
-            currentField.removePushable();
-            nextField.visit(this);
-            return true;
-        }else{
-            boolean success = neighbor.push(worker, direction);
-            if(success){
+
+
+        if (neededStrength <= worker.getStrength()) {
+            if (neighbor == null) {
                 currentField.removePushable();
                 nextField.visit(this);
                 return true;
-            }else{
-                //returns true, because the cornered worker was squeezed, so there's place now where things can be pushed to
-                die();
-                return true;
+            } else {
+                boolean success = neighbor.push(worker, direction, neededStrength);
+                if (success) {
+                    currentField.removePushable();
+                    nextField.visit(this);
+                    return true;
+                } else {
+                    //returns true, because the cornered worker was squeezed, so there's place now where things can be pushed to
+                    die();
+                    return true;
+                }
             }
+        }
+        else{
+            return false;
         }
     }
 
@@ -86,7 +105,7 @@ public class Worker implements Squeezable, Pushable {
         System.out.println("Worker, " + this.name + ", destroy, " + currentField.getName());
         watcher.decreaseWorkers();
         alive = false;
-        currentField=null;
+        currentField = null;
     }
 
     @Override
@@ -105,15 +124,15 @@ public class Worker implements Squeezable, Pushable {
         System.out.println("Worker, " + this.name + ", die, " + currentField.getName());
         watcher.decreaseWorkers();
         currentField.removePushable();
-        alive= false;
+        alive = false;
     }
 
-    public void dropOil(){
+    public void dropOil() {
         System.out.println("Worker, " + this.name + ", dropOil, " + currentField.getName());
         this.currentField.makeSlippery();
     }
 
-    public void dropHoney(){
+    public void dropHoney() {
         System.out.println("Worker, " + this.name + ", dropHoney, " + currentField.getName());
         this.currentField.makeSticky();
     }
