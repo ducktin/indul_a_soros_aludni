@@ -1,3 +1,3 @@
 public interface Squeezable {
-    public void die();
+    void die();
 }

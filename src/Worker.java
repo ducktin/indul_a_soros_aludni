@@ -9,13 +9,13 @@ public class Worker implements Squeezable, Pushable {
     private int honeyBombs = 3;
     private int oilBarrels = 3;
 
-    public Worker(Field field, String name /*,int strength*/) {
+    public Worker(Field field, String name ,int strength) {
         System.out.println("Worker, " + name + ", constructor, " + field.getName());
         this.currentField = field;
         this.points = 0;
         this.name = name;
         this.watcher = Watcher.getInstance();
-        //this.strength = strength;
+        this.strength = strength;
     }
 
 
@@ -64,13 +64,12 @@ public class Worker implements Squeezable, Pushable {
         this.strength = strength;
     }
 
-    //TODO: rerwork for slippinness--> only else branch should be modified
     @Override
     public boolean push(Worker worker, Direction direction, int neededStrength) {
         System.out.println("Worker, " + this.name + ", push, " + currentField.getName());
 
         //Add the current field slippiness to the needed Strength to push the chain
-        neededStrength += this.getCurrentField().getSlippiness();
+        neededStrength += this.getCurrentField().getSlipperiness();
 
         Field nextField = currentField.getNeighbor(direction);
         Pushable neighbor = nextField.getPushable();

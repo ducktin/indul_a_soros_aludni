@@ -1,7 +1,7 @@
 public class GoalField extends Field {
     private Watcher watcher;
 
-    public GoalField(Pushable content, String name /*Watcher watcher*/) {
+    public GoalField(Pushable content, String name) {
         super(content, name);
         System.out.printf("GoalField, " + this.name + "constructor");
         this.watcher = Watcher.getInstance();

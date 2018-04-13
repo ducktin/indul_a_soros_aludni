@@ -63,8 +63,8 @@ public class Field implements Visitable {
         crate.checkMovability();
     }
 
-    public int getSlippiness() {
-        System.out.println("Field, " + this.name + ", getSlippiness");
+    public int getSlipperiness() {
+        System.out.println("Field, " + this.name + ", getSlipperiness");
         return slipperiness;
     }
 

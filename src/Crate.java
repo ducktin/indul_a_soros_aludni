@@ -98,12 +98,11 @@ public class Crate implements Pushable {
         System.out.println("END/////checkMovability" + this.name + "/////END");
     }
 
-    //TODO: rework for slippiness
     @Override
     public boolean push(Worker worker, Direction direction, int neededStrength) {
         System.out.println("Crate, " + this.name + ", push, CurrentField:" + currentField.getName());
 
-        neededStrength += this.getCurrentField().getSlippiness();
+        neededStrength += this.getCurrentField().getSlipperiness();
 
         Field nextField = currentField.getNeighbor(direction);
         Pushable neighbor = nextField.getPushable();
