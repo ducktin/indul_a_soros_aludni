@@ -6,6 +6,8 @@ public class Watcher {
     private int pushableCrates;
     private int freeGoalFields;
 
+    //TODO:Initialize the attributes-->make them static?
+
     private Watcher() {
         //exists only to defeat instantiation
     }

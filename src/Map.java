@@ -25,4 +25,8 @@ public class Map {
         System.out.println("Map, addField, field: " + field.getName());
 
     }
+
+    public Field[][] getFields() {
+        return fields;
+    }
 }
