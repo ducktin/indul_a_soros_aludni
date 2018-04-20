@@ -81,4 +81,8 @@ public class Field implements Visitable {
             this.slipperiness++;
         }
     }
+
+    public String getOutPutString(){
+        return null;
+    }
 }

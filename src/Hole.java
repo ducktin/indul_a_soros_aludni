@@ -24,4 +24,9 @@ public class Hole extends Field {
         content.destroy();
         setContent(null);
     }
+
+    @Override
+    public String getOutPutString() {
+        return "H";
+    }
 }

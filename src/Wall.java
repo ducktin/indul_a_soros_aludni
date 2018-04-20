@@ -26,4 +26,9 @@ public class Wall implements Pushable{
         //never called
         System.out.println("Wall, destroy");
     }
+
+    @Override
+    public String getOutPutString() {
+        return "w";
+    }
 }

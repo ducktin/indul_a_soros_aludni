@@ -29,4 +29,9 @@ public class Switch extends Field {
         super.visit(crate);
         trapHole.changeTrapStatus(true);
     }
+
+    @Override
+    public String getOutPutString() {
+        return "S";
+    }
 }

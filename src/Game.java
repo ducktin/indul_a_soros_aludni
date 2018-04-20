@@ -1,12 +1,12 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.Scanner;
 
 public class Game {
     private Map map;
     private int goalFields;
     private boolean started = false;
+    private int xAxis=0;
+    private int yAxis=0;
 
     private int[] readDimensions(Scanner in) {
         int[] dimensions = new int[2];
@@ -15,6 +15,8 @@ public class Game {
         String[] tmp = line.split(" ");
         dimensions[0] = Integer.parseInt(tmp[0]);
         dimensions[1] = Integer.parseInt(tmp[1]);
+        xAxis = dimensions[0];
+        yAxis = dimensions[1];
         return dimensions;
     }
 
@@ -42,8 +44,6 @@ public class Game {
             }
         }
 
-
-
         //lines in the input
         int inputLines = in.nextInt();
 
@@ -58,25 +58,26 @@ public class Game {
         //next line reading and creating objects
         for (int i = 0; i < inputLines; i++) {
             String[] line = in.nextLine().split(" ");
-            int x = Integer.parseInt(line[1])+1;
-            int y = Integer.parseInt(line[2])+1;
+            int x = Integer.parseInt(line[1]);
+            int y = Integer.parseInt(line[2]);
             switch (line[0]) {
-                //No Fs in the input tests
-                case "F":
 
+                case "F":
+                    //No Fs in the input tests
                     break;
                 case "H":
                     map.getFields()[x][y] = new Hole(map.getFields()[x][y].getPushable(), "Hole-" + holeNameNumber++);
                     break;
                 case "T":
-                    map.getFields()[x][y] = new TrapHole(map.getFields()[x][y].getPushable(), "trapHole-" + trapHoleNameNumber++);
+                    //USELESS, All TrapHoles are created in the Switch's line
+                    //map.getFields()[x][y] = new TrapHole(map.getFields()[x][y].getPushable(), "trapHole-" + trapHoleNameNumber++);
                     break;
                 case "S":
-                    //TODO: Finally do how the Swicth acquires its traphole
-                    int xTrap = Integer.parseInt(line[3])+1;
-                    int yTrap = Integer.parseInt(line[4])+1;
-                    //Field trapHole = new TrapHole(null);
-                    //map.getFields()[x][y] = new Switch(map.getFields()[x][y].getPushable(), trapHole, "Switch-" + switchNameNumber++);
+                    //Erre majd nézzen rá tintin, jó e kasztolás,vagyis működni fog-e
+                    int xTrap = Integer.parseInt(line[3]);
+                    int yTrap = Integer.parseInt(line[4]);
+                    map.getFields()[xTrap][yTrap] = new TrapHole(null, "trapHole-" + trapHoleNameNumber++);
+                    map.getFields()[x][y] = new Switch(map.getFields()[x][y].getPushable(), (TrapHole) map.getFields()[xTrap][yTrap], "Switch-" + switchNameNumber++);
                     break;
                 case "w":
                     map.getFields()[x][y].setContent(new Wall());
@@ -99,6 +100,26 @@ public class Game {
                     break;
             }
         }
+    }
+
+    public void writeToFile(int testNumber) throws IOException {
+        PrintWriter writer = new PrintWriter("testoutput_" + testNumber + ".txt", "UTF-8");
+        writer.println(xAxis + " " + yAxis);
+        for (int i = 0; i < xAxis; i++) {
+            for (int j = 0; j < yAxis; j++) {
+                String line=null;
+                Field field = map.getFields()[i][j];
+                if(field.getOutPutString()!=null){
+                    line = field.getOutPutString() + " " + i + " " + j;
+                    writer.println(line);
+                }
+                if(field.getPushable()!=null){
+                    line = field.getPushable().getOutPutString() + " " + i + " " + j;
+                    writer.println(line);
+                }
+            }
+        }
+        writer.close();
     }
 
     public void startGame() {

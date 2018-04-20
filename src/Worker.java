@@ -135,4 +135,9 @@ public class Worker implements Squeezable, Pushable {
         System.out.println("Worker, " + this.name + ", dropHoney, " + currentField.getName());
         this.currentField.makeSticky();
     }
+
+    @Override
+    public String getOutPutString() {
+        return "W";
+    }
 }

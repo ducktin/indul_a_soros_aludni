@@ -142,4 +142,9 @@ public class Crate implements Pushable {
         watcher.decreaseCrates();
         setField(null);
     }
+
+    @Override
+    public String getOutPutString() {
+        return "C";
+    }
 }

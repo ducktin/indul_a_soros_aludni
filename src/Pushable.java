@@ -3,4 +3,5 @@ public interface Pushable {
     void destroy();
     boolean isMovable();
     String getName();
+    String getOutPutString();
 }

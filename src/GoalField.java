@@ -25,4 +25,9 @@ public class GoalField extends Field {
         crate.immobilise();
         watcher.decreaseGoalField();
     }
+
+    @Override
+    public String getOutPutString() {
+        return "G";
+    }
 }

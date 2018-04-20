@@ -44,4 +44,9 @@ public class TrapHole extends Hole {
             setContent(null);
         }
     }
+
+    @Override
+    public String getOutPutString() {
+        return "T";
+    }
 }
