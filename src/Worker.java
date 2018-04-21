@@ -10,12 +10,14 @@ public class Worker implements Squeezable, Pushable {
     private int oilBarrels = 3;
 
     public Worker(Field field, String name ,int strength) {
-        System.out.println("Worker, " + name + ", constructor, " + field.getName());
+
         this.currentField = field;
         this.points = 0;
         this.name = name;
         this.watcher = Watcher.getInstance();
         this.strength = strength;
+
+       // System.out.println("Worker, " + name + ", constructor, " + field.getName());
     }
 
 

@@ -1,21 +1,22 @@
 import java.util.Scanner;
 
-public class Skeleton {
+public class Prototype {
     public static String[] options = {
-            "5.4.1 Worker Moves to Empty Field",
-            "5.4.2 Worker Moves towards Wall",
-            "5.4.3 Worker Moves into Hole",
-            "5.4.4 Worker Moves onto Switch",
-            "5.4.5 Worker Moves onto GoalField",
-            "5.4.6 Worker Pushes Crate to Empty Field",
-            "5.4.7 Worker Pushes two Crates to an Empty Field",
-            "5.4.8 Worker Pushes Crate to a Hole",
-            "5.4.9 Worker Pushes Crate to Wall",
-            "5.4.10 Worker Pushes Crate on a Switch",
-            "5.4.11 Worker Pushes Crate onto a GoalField",
-            "5.4.12 Worker Pushes Worker to an Empty Field",
-            "5.4.13 Worker Pushes Crate Pushes Worker to a Wall",
-            "14 StrengthTest"
+            "1 Worker Moves to Empty Field",
+            "2 Worker Moves towards Wall",
+            "3 Worker Moves into Hole",
+            "4 Worker Moves onto Switch",
+            "5 Worker Moves onto GoalField",
+            "6 Worker Pushes Crate to Empty Field",
+            "7 Worker Pushes two Crates to an Empty Field, if he's strong enough",
+            "8 Worker Pushes two Crates to an Empty Field, if he isn't strong enough",
+            "9 Worker Pushes Crate to a Hole",
+            "10 Worker Pushes Crate to Wall",
+            "11 Worker Pushes Crate on a Switch",
+            "12 Worker Pushes Crate onto a GoalField, the pushes it one more time",
+            "13 Worker Pushes Worker to an Empty Field",
+            "14 Worker Pushes Crate on Oily field, crate is heavier than worker's strength, but oil is helping",
+            "15 Worker Pushes Crate on Honey field, crate is lighter than worker's strength, but honey is sticky"
     };
 
     private static Scanner in = new Scanner(System.in);
@@ -30,13 +31,13 @@ public class Skeleton {
     }
 
     public static void printOptions() {
-        for (int i = 0; i < Skeleton.options.length; i++) {
+        for (int i = 0; i < Prototype.options.length; i++) {
             // String index = String.valueOf(i + 1) + ". ";
-            System.out.println(Skeleton.options[i]);
+            System.out.println(Prototype.options[i]);
         }
     }
 
-    public static void invoke(int choice) {
+   /* public static void invoke(int choice) {
         switch (choice) {
             case 1:
                 workerMovesToEmptyField();
@@ -78,13 +79,24 @@ public class Skeleton {
                 WorkerPushesCratePushesWorkerToWall();
                 break;
             case 14:
-                StrengthTest();
+
+                break;
+            case 15:
+
                 break;
             default:
                 return;
         }
+    }*/
+
+    private static void workerMovesToEmptyField(){
+
     }
 
+    private static void workerMovesTowardsWall(){}
+
+
+/*
     private static void StrengthTest() {
         //Field setup
         Field field1 = new Field(null, "field1");
@@ -102,7 +114,7 @@ public class Skeleton {
         field4.setNeighbor(Direction.RIGHT, field5);
         field5.setNeighbor(Direction.LEFT, field4);
 
-        //Worker setuo
+        //Worker setup
         Worker w1= new Worker(field1, "w1");
         w1.setStrength(3);
         field1.setContent(w1);
@@ -113,8 +125,8 @@ public class Skeleton {
         field2.setContent(c1);
         Crate c2 = new Crate(field4, "c2");
         field4.setContent(c2);
-        /*Crate c3 = new Crate(field4, "c3");
-        field5.setContent(c3);*/
+        Crate c3 = new Crate(field4, "c3");
+        field5.setContent(c3);
 
 
         //map setup
@@ -571,5 +583,5 @@ public class Skeleton {
 
         System.out.println("End of WorkerPushesCratePushesWorkerToWall");
         in.nextLine();
-    }
+    }*/
 }

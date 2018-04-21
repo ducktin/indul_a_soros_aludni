@@ -32,10 +32,9 @@ public class Game {
 
         //making the map
         int[] dimensions = readDimensions(in);
-        Map map = new Map(dimensions[0], dimensions[1]);
+        map = new Map(dimensions[0], dimensions[1]);
 
         //Making all of the Fields
-        //Field[][] fields = map.getFields();
         int nameCounter = 0;
         for (int i = 0; i < dimensions[0]; i++) {
             for (int j = 0; j < dimensions[1]; j++) {
@@ -45,7 +44,7 @@ public class Game {
         }
 
         //lines in the input
-        int inputLines = in.nextInt();
+        int inputLines = Integer.parseInt(in.nextLine());
 
         //name increments
         int crateNameNumber = 0;

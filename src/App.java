@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -7,30 +8,43 @@ import java.util.Scanner;
  */
 public class App {
 
-    public static void main(String[] args) {
+   /* public static void main(String[] args){
+
+    }*/
+
+    public static void main(String[] args){
+
+        Game game = new Game();
 
         int choice = -1;
         while (choice != 100) {
-            Skeleton.printOptions();
+            Prototype.printOptions();
             choice = getInput();
-            Skeleton.invoke(choice);
+            //Prototype.invoke(choice);
+            game.init(new java.io.File("testInput_" + choice + ".txt"));
+            try{
+                game.writeToFile(choice);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
         System.out.println("Thanks for using the program!");
 
     }
 
     private static int getInput() {
-        String[] options = Skeleton.options;
+        String[] options = Prototype.options;
         String inputString = "Test case to run (1-" + String.valueOf(options.length) + "), enter 100 to quit: ";
 
         Scanner scanner = new Scanner(System.in);
 
         int choice = -1;
-        while(choice < 1 || choice > options.length) {
+        while (choice < 1 || choice > options.length) {
             System.out.print(inputString);
             try {
                 choice = scanner.nextInt();
-                if(choice == 100)
+                if (choice == 100)
                     break;
             } catch (InputMismatchException e) {
                 choice = -1;
