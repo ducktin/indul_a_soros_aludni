@@ -8,10 +8,6 @@ import java.util.Scanner;
  */
 public class App {
 
-   /* public static void main(String[] args){
-
-    }*/
-
     public static void main(String[] args){
 
         Game game = new Game();
@@ -22,6 +18,7 @@ public class App {
             choice = getInput();
             //Prototype.invoke(choice);
             game.init(new java.io.File("testInput_" + choice + ".txt"));
+            game.map.moveWorker(0,Direction.RIGHT);
             try{
                 game.writeToFile(choice);
             } catch (IOException e) {

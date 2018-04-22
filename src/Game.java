@@ -2,11 +2,11 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Game {
-    private Map map;
+    protected Map map;
     private int goalFields;
     private boolean started = false;
-    private int xAxis=0;
-    private int yAxis=0;
+    private int xAxis = 0;
+    private int yAxis = 0;
 
     private int[] readDimensions(Scanner in) {
         int[] dimensions = new int[2];
@@ -99,6 +99,75 @@ public class Game {
                     break;
             }
         }
+
+        //Neighbours if there's only one line of fields
+        if (xAxis == 1) {
+            //baloldali széle
+            map.getFields()[0][0].setNeighbor(Direction.RIGHT, map.getFields()[0][1]);
+            //jobboldali széle
+            map.getFields()[0][yAxis - 1].setNeighbor(Direction.LEFT, map.getFields()[0][yAxis - 2]);
+            //Kozepe
+            for (int i = 1; i < yAxis - 1; i++) {
+                map.getFields()[0][i].setNeighbor(Direction.RIGHT, map.getFields()[0][i + 1]);
+                map.getFields()[0][i].setNeighbor(Direction.LEFT, map.getFields()[0][i - 1]);
+            }
+        } else {
+            for (int i = 0; i < xAxis; i++) {
+                for (int j = 0; j < yAxis; j++) {
+                    //bal felso sarok
+                    if (i == 0 && j == 0) {
+                        map.getFields()[i][j].setNeighbor(Direction.RIGHT, map.getFields()[i][j + 1]);
+                        map.getFields()[i][j].setNeighbor(Direction.DOWN, map.getFields()[i + 1][j]);
+                    }
+                    //jobb felso sarok
+                    if (i == 0 && j == yAxis - 1) {
+                        map.getFields()[i][j].setNeighbor(Direction.LEFT, map.getFields()[i][j - 1]);
+                        map.getFields()[i][j].setNeighbor(Direction.DOWN, map.getFields()[i + 1][j]);
+                    }
+                    //bal also sarok
+                    if (i == xAxis - 1 && j == 0) {
+                        map.getFields()[i][j].setNeighbor(Direction.RIGHT, map.getFields()[i][j + 1]);
+                        map.getFields()[i][j].setNeighbor(Direction.UP, map.getFields()[i - 1][j]);
+                    }
+                    //jobb also sarok
+                    if (i == xAxis - 1 && j == yAxis - 1) {
+                        map.getFields()[i][j].setNeighbor(Direction.LEFT, map.getFields()[i][j - 1]);
+                        map.getFields()[i][j].setNeighbor(Direction.UP, map.getFields()[i - 1][j]);
+                    }
+                    if (i == 0 && j < yAxis - 1 && j >= 1) {
+                        //Felso sor
+                        map.getFields()[i][j].setNeighbor(Direction.RIGHT, map.getFields()[i][j + 1]);
+                        map.getFields()[i][j].setNeighbor(Direction.DOWN, map.getFields()[i + 1][j]);
+                        map.getFields()[i][j].setNeighbor(Direction.LEFT, map.getFields()[i][j - 1]);
+                    }
+                    if (i == xAxis - 1 && j>=1 && j<yAxis-1) {
+                        //also sor
+                        map.getFields()[i][j].setNeighbor(Direction.RIGHT, map.getFields()[i][j + 1]);
+                        map.getFields()[i][j].setNeighbor(Direction.UP, map.getFields()[i - 1][j]);
+                        map.getFields()[i][j].setNeighbor(Direction.LEFT, map.getFields()[i][j - 1]);
+                    }
+                    if (i >= 1 && i < xAxis - 1 && j == yAxis - 1) {
+                        //Jobb oldali sor
+                        map.getFields()[i][j].setNeighbor(Direction.DOWN, map.getFields()[i+1][j]);
+                        map.getFields()[i][j].setNeighbor(Direction.UP, map.getFields()[i - 1][j]);
+                        map.getFields()[i][j].setNeighbor(Direction.LEFT, map.getFields()[i][j - 1]);
+                    }
+                    if (i >= 1 && i < xAxis - 1 && j == 0) {
+                        //bal oldali sor
+                        map.getFields()[i][j].setNeighbor(Direction.RIGHT, map.getFields()[i][j + 1]);
+                        map.getFields()[i][j].setNeighbor(Direction.UP, map.getFields()[i - 1][j]);
+                        map.getFields()[i][j].setNeighbor(Direction.DOWN, map.getFields()[i + 1][j]);
+                    }
+                    if (i < xAxis - 1 && j < yAxis - 1 && i >= 1 && j >= 1) {
+                        //belso fieldek
+                        map.getFields()[i][j].setNeighbor(Direction.RIGHT, map.getFields()[i][j + 1]);
+                        map.getFields()[i][j].setNeighbor(Direction.UP, map.getFields()[i - 1][j]);
+                        map.getFields()[i][j].setNeighbor(Direction.LEFT, map.getFields()[i][j - 1]);
+                        map.getFields()[i][j].setNeighbor(Direction.DOWN, map.getFields()[i + 1][j]);
+                    }
+                }
+            }
+        }
     }
 
     public void writeToFile(int testNumber) throws IOException {
@@ -106,13 +175,13 @@ public class Game {
         writer.println(xAxis + " " + yAxis);
         for (int i = 0; i < xAxis; i++) {
             for (int j = 0; j < yAxis; j++) {
-                String line=null;
+                String line = null;
                 Field field = map.getFields()[i][j];
-                if(field.getOutPutString()!=null){
+                if (field.getOutPutString() != null) {
                     line = field.getOutPutString() + " " + i + " " + j;
                     writer.println(line);
                 }
-                if(field.getPushable()!=null){
+                if (field.getPushable() != null) {
                     line = field.getPushable().getOutPutString() + " " + i + " " + j;
                     writer.println(line);
                 }
