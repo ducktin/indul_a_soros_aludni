@@ -1,6 +1,16 @@
 public class TrapHole extends Hole {
 
     private boolean status;
+    
+    private static int instances = 0;
+    
+    private static String nextName(){
+        return "TrapHole-" + instances++;
+    }
+    
+    public TrapHole(Pushable content) {
+        this(content, nextName());
+    }
 
     public TrapHole(Pushable content, String name) {
         super(content, name);

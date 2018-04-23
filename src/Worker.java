@@ -8,8 +8,18 @@ public class Worker implements Squeezable, Pushable {
     private int strength;
     private int honeyBombs = 3;
     private int oilBarrels = 3;
+    
+    private static int instances = 0;
+    
+    private static String nextName(){
+        return "Worker-" + instances++;
+    }
+    
+    public Worker(Field field, int strength) {
+        this(field, strength, nextName());
+    }
 
-    public Worker(Field field, String name ,int strength) {
+    public Worker(Field field, int strength, String name) {
 
         this.currentField = field;
         this.points = 0;

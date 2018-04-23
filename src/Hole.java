@@ -1,5 +1,14 @@
 public class Hole extends Field {
-
+    
+    private static int instances = 0;
+    
+    private static String nextName(){
+        return "Hole-" + instances++;
+    }
+    
+    public Hole(Pushable content) {
+        this(content, nextName());
+    }
 
     public Hole(Pushable content, String name) {
         super(content, name);

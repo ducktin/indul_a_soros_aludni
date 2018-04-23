@@ -1,12 +1,22 @@
 
 public class Crate implements Pushable {
 
+    private static int instances = 0;
+    
     private Field currentField;
     private boolean movable;
     private Watcher watcher;
     private Worker lastMovedBy;
     private String name;
 
+    private static String nextName(){
+        return "Crate-" + instances++;
+    }
+    
+    public Crate(Field field) {
+        this(field, nextName());
+    }
+    
     public Crate(Field field, String name) {
         System.out.println("Crate " + name + " constructor " + field.getName());
         this.currentField = field;

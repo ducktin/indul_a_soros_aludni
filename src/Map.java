@@ -24,7 +24,6 @@ public class Map {
     public void addField(int xPos, int yPos, Field field){
         fields[xPos][yPos] = field;
         System.out.println("Map, addField, field: " + field.getName());
-
     }
 
     public Field[][] getFields() {

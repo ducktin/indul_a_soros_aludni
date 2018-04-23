@@ -1,11 +1,21 @@
 import java.util.EnumMap;
 
 public class Field implements Visitable {
-
+    
+    
     protected Pushable content;
     protected EnumMap<Direction, Field> neighbors;
     protected String name;
     protected int slipperiness = 1;
+    private static int instances = 0;
+    
+    private static String nextName(){
+        return "Field-" + instances++;
+    }
+    
+    public Field(Pushable content) {
+        this(content, nextName());
+    }
 
     public Field(Pushable content, String name) {
         System.out.println("Field, " + name + " constructor");

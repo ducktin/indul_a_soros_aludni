@@ -1,6 +1,16 @@
 public class GoalField extends Field {
     private Watcher watcher;
-
+    
+    private static int instances = 0;
+    
+    private static String nextName(){
+        return "GoalField-" + instances++;
+    }
+    
+    public GoalField(Pushable content) {
+        this(content, nextName());
+    }
+    
     public GoalField(Pushable content, String name) {
         super(content, name);
         System.out.printf("GoalField, " + this.name + "constructor");

@@ -1,7 +1,17 @@
 public class Switch extends Field {
     private TrapHole trapHole;
     private boolean isActivated;
-
+    
+    private static int instances = 0;
+    
+    private static String nextName(){
+        return "Switch-" + instances++;
+    }
+    
+    public Switch(Pushable content, TrapHole trapHole) {
+        this(content, trapHole, nextName());
+    }
+    
     public Switch(Pushable content, TrapHole trapHole, String name) {
         super(content, name);
         this.trapHole=trapHole;
