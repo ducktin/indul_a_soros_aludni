@@ -12,8 +12,8 @@ public class Game {
         return started;
     }
 
-    public void moveThem(String order) {
-        switch (order) {
+    public void executeCommand(String command) {
+        switch (command) {
             case "w":
                 map.moveWorker(0, Direction.UP);
                 break;
@@ -189,7 +189,7 @@ public class Game {
         }
     }
 
-    public void writeToFile(int testNumber) throws IOException {
+    private void writeOutput(int testNumber) throws IOException {
         PrintWriter writer = new PrintWriter("testOutput_" + testNumber + ".txt", "UTF-8");
         writer.println(width + " " + height);
         for (int i = 0; i < width; i++) {
@@ -217,8 +217,13 @@ public class Game {
 
     }
 
-    public void endGame() {
+    public void endGame(int testNumber) {
         System.out.println("Ending Game");
+        try{
+            writeOutput(testNumber);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         started = false;
     }
 
