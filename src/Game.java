@@ -1,12 +1,49 @@
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.*;
 import java.util.Scanner;
 
 public class Game {
     protected Map map;
-    private int goalFields;
+    private int goalFields=0;
     private boolean started = false;
     private int xAxis = 0;
     private int yAxis = 0;
+
+    public boolean getStarted() {
+        return started;
+    }
+
+    public void moveThem(String order) {
+        switch (order) {
+            case "w":
+                map.moveWorker(0, Direction.UP);
+                break;
+            case "a":
+                map.moveWorker(0, Direction.LEFT);
+                break;
+            case "d":
+                map.moveWorker(0, Direction.RIGHT);
+                break;
+            case "s":
+                map.moveWorker(0, Direction.DOWN);
+                break;
+            case "i":
+                map.moveWorker(1, Direction.UP);
+                break;
+            case "j":
+                map.moveWorker(1, Direction.LEFT);
+                break;
+            case "k":
+                map.moveWorker(1, Direction.RIGHT);
+                break;
+            case "l":
+                map.moveWorker(1, Direction.DOWN);
+                break;
+            default:
+                break;
+        }
+    }
 
     private int[] readDimensions(Scanner in) {
         int[] dimensions = new int[2];
@@ -95,6 +132,10 @@ public class Game {
                     map.getFields()[x][y] = new GoalField(map.getFields()[x][y].getPushable(), "goalField-" + goalFieldNameNumber++);
                     goalFields++;
                     break;
+                case "s":
+                    //slipperiness x y value
+                    map.getFields()[x][y].slipperiness = Integer.parseInt(line[3]);
+                    break;
                 default:
                     break;
             }
@@ -140,7 +181,7 @@ public class Game {
                         map.getFields()[i][j].setNeighbor(Direction.DOWN, map.getFields()[i + 1][j]);
                         map.getFields()[i][j].setNeighbor(Direction.LEFT, map.getFields()[i][j - 1]);
                     }
-                    if (i == xAxis - 1 && j>=1 && j<yAxis-1) {
+                    if (i == xAxis - 1 && j >= 1 && j < yAxis - 1) {
                         //also sor
                         map.getFields()[i][j].setNeighbor(Direction.RIGHT, map.getFields()[i][j + 1]);
                         map.getFields()[i][j].setNeighbor(Direction.UP, map.getFields()[i - 1][j]);
@@ -148,7 +189,7 @@ public class Game {
                     }
                     if (i >= 1 && i < xAxis - 1 && j == yAxis - 1) {
                         //Jobb oldali sor
-                        map.getFields()[i][j].setNeighbor(Direction.DOWN, map.getFields()[i+1][j]);
+                        map.getFields()[i][j].setNeighbor(Direction.DOWN, map.getFields()[i + 1][j]);
                         map.getFields()[i][j].setNeighbor(Direction.UP, map.getFields()[i - 1][j]);
                         map.getFields()[i][j].setNeighbor(Direction.LEFT, map.getFields()[i][j - 1]);
                     }
@@ -190,13 +231,36 @@ public class Game {
         writer.close();
     }
 
+
     public void startGame() {
         System.out.println("starting Game");
+
         started = true;
+
     }
 
     public void endGame() {
         System.out.println("ending Game");
         started = false;
     }
+
+    /*@Override
+    public void keyTyped(KeyEvent e) {
+        switch  (e.getKeyCode()){
+            case KeyEvent.VK_D:
+                map.moveWorker(0,Direction.RIGHT);
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }*/
 }

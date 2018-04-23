@@ -19,17 +19,6 @@ public class Prototype {
             "15 Worker Pushes Crate on Honey field, crate is lighter than worker's strength, but honey is sticky"
     };
 
-    private static Scanner in = new Scanner(System.in);
-
-    private static void waitInput(String wait){
-        String typed = "";
-        while(!typed.equalsIgnoreCase(wait)){
-            System.out.print("Type \""+wait+"\": ");
-            typed = in.nextLine();
-        }
-
-    }
-
     public static void printOptions() {
         for (int i = 0; i < Prototype.options.length; i++) {
             // String index = String.valueOf(i + 1) + ". ";
