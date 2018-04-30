@@ -29,4 +29,8 @@ public class Map {
     public Field[][] getFields() {
         return fields;
     }
+
+    public List<Worker> getWorkers() {
+        return workers;
+    }
 }

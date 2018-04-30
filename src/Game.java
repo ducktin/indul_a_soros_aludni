@@ -14,6 +14,7 @@ public class Game {
 
     public void executeCommand(String command) {
         switch (command) {
+            //Player No.1
             case "w":
                 map.moveWorker(0, Direction.UP);
                 break;
@@ -26,6 +27,13 @@ public class Game {
             case "s":
                 map.moveWorker(0, Direction.DOWN);
                 break;
+            case "x":
+                map.getWorkers().get(0).dropOil();
+                break;
+            case "y":
+                map.getWorkers().get(0).dropHoney();
+                break;
+            //Player No.2
             case "i":
                 map.moveWorker(1, Direction.UP);
                 break;
@@ -38,9 +46,17 @@ public class Game {
             case "l":
                 map.moveWorker(1, Direction.DOWN);
                 break;
+            case "n":
+                map.getWorkers().get(1).dropOil();
+                break;
+            case "m":
+                map.getWorkers().get(1).dropHoney();
+                break;
+            //TODO:Player No.3???? Just with cursor arrows-> need the keylistner and grapich shit
             default:
                 break;
         }
+        drawConsole();
     }
 
     private void readDimensions(Scanner in) {
@@ -209,6 +225,24 @@ public class Game {
         writer.close();
     }
 
+    public void drawConsole(){
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                Field field = map.getFields()[i][j];
+                if(field.getPushable()!=null){
+                    System.out.print("[" + field.getPushable().getOutPutString()+ "]" + "  ");
+                }
+                else if(field.getOutPutString()==null)
+                {
+                    System.out.print("[" + " " + "]" + "  ");
+                }
+                else{
+                    System.out.print("[" + field.getOutPutString() + "]" + "  ");
+                }
+            }
+            System.out.println();
+        }
+    }
 
     public void startGame() {
         System.out.println("Starting Game");
@@ -217,33 +251,10 @@ public class Game {
 
     }
 
-    public void endGame(int testNumber) {
-        System.out.println("Ending Game");
-        try{
-            writeOutput(testNumber);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void endGame(int number) throws IOException {
+        System.out.println("Game Over");
+        writeOutput(number);
         started = false;
     }
 
-    /*@Override
-    public void keyTyped(KeyEvent e) {
-        switch  (e.getKeyCode()){
-            case KeyEvent.VK_D:
-                map.moveWorker(0,Direction.RIGHT);
-            default:
-                break;
-        }
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }*/
 }

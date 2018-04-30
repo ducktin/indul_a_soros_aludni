@@ -6,41 +6,47 @@ import java.util.Scanner;
  * App
  * Entry point of the application
  */
-public class App{
+public class App {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
+
         Scanner console = new Scanner(System.in);
-    
-    
-        Prototype.printOptions();
+
+        MapList.printOptions();
         int choice = getInput(console);
         while (choice != 100) {
-            int testNumber = choice;
-            
+
+            int mapNumber = choice;
+
             Game game = new Game();
-            game.init(new java.io.File("testInput_" + testNumber + ".txt"));
+
+            game.init(new java.io.File("map_" + mapNumber + ".txt"));
+
             game.startGame();
-    
-            System.out.println("Type in command keys, or type 'quit' to end the test");
+
+            System.out.println("Type in command keys, or type 'quit' to end the game");
+
             String command = console.nextLine().toLowerCase();
-            while (!command.equals("quit")){
+
+            while (!command.equals("quit")) {
                 game.executeCommand(command);
-    
-                System.out.println("Type in command keys, or type 'quit' to end the test");
                 command = console.nextLine().toLowerCase();
             }
-            game.endGame(testNumber);
-            
-            Prototype.printOptions();
             choice = getInput(console);
+            try {
+                game.endGame(mapNumber);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        
+
         System.out.println("Thanks for using the program!");
     }
 
     private static int getInput(Scanner console) {
-        String[] options = Prototype.options;
-        String inputString = "Test case to run (1-" + String.valueOf(options.length) + "), enter 100 to quit: ";
+        String[] options = MapList.options;
+        System.out.println("Input:\nmove: wasd/ijkl, x/m dropHoney, y/n dropOil");
+        String inputString = "Map to run (1-" + String.valueOf(options.length) + ")";
 
         int choice = -1;
         while (choice < 1 || choice > options.length) {

@@ -1,18 +1,18 @@
 import java.util.EnumMap;
 
 public class Field implements Visitable {
-    
-    
+
+
     protected Pushable content;
     protected EnumMap<Direction, Field> neighbors;
     protected String name;
     protected int slipperiness = 1;
     private static int instances = 0;
-    
-    private static String nextName(){
+
+    private static String nextName() {
         return "Field-" + instances++;
     }
-    
+
     public Field(Pushable content) {
         this(content, nextName());
     }
@@ -39,7 +39,7 @@ public class Field implements Visitable {
     }
 
     public Pushable getPushable() {
-        System.out.println("Field, " + this.name + ", getPushable");
+        //System.out.println("Field, " + this.name + ", getPushable");
         return content;
     }
 
@@ -92,7 +92,7 @@ public class Field implements Visitable {
         }
     }
 
-    public String getOutPutString(){
+    public String getOutPutString() {
         return null;
     }
 }

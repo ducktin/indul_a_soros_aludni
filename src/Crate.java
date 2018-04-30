@@ -31,17 +31,17 @@ public class Crate implements Pushable {
     }
 
     public void setField(Field field) {
-        System.out.println("Crate, " + this.name + ", setField, New field: " + field.getName());
+        //System.out.println("Crate, " + this.name + ", setField, New field: " + field.getName());
         this.currentField = field;
     }
 
     public Field getCurrentField() {
-        System.out.println("Crate, " + this.name + ", getCurrentField,  CurrentField:" + currentField.getName());
+        //System.out.println("Crate, " + this.name + ", getCurrentField,  CurrentField:" + currentField.getName());
         return currentField;
     }
 
     public boolean isMovable() {
-        System.out.println("Crate, " + this.name + ", isMovable?, CurrentField:" + currentField.getName());
+        //System.out.println("Crate, " + this.name + ", isMovable?, CurrentField:" + currentField.getName());
         return movable;
     }
 
@@ -111,6 +111,10 @@ public class Crate implements Pushable {
     @Override
     public boolean push(Worker worker, Direction direction, int neededStrength) {
         System.out.println("Crate, " + this.name + ", push, CurrentField:" + currentField.getName());
+
+        if(!movable){
+            return false;
+        }
 
         neededStrength += this.getCurrentField().getSlipperiness();
 
