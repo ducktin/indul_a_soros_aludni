@@ -1,10 +1,12 @@
+package model;
+
 public class GoalField extends Field {
     private Watcher watcher;
     
     private static int instances = 0;
     
     private static String nextName(){
-        return "GoalField-" + instances++;
+        return "model.GoalField-" + instances++;
     }
     
     public GoalField(Pushable content) {
@@ -13,7 +15,7 @@ public class GoalField extends Field {
     
     public GoalField(Pushable content, String name) {
         super(content, name);
-        System.out.printf("GoalField, " + this.name + "constructor");
+        System.out.printf("model.GoalField, " + this.name + "constructor");
         this.watcher = Watcher.getInstance();
     }
 

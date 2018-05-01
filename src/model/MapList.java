@@ -1,3 +1,5 @@
+package model;
+
 public class MapList {
     public static String[] options = {
             "Two player maps:\n1. The One And Only",
@@ -9,11 +11,11 @@ public class MapList {
             "7. asd",
             "8. Falling into the Void",
             "9. Falling into the Void",
-            "10. Wall of Death",
+            "10. model.Wall of Death",
             "3 Player maps:\n11. The One And Only",
             "12. Normal, Some Crates, Some GoalFields",
             "13. Normal, but Traps and Holes",
-            "14. Normal, Some Crates, Some GoalField part 2"
+            "14. Normal, Some Crates, Some model.GoalField part 2"
     };
 
     public static void printOptions() {

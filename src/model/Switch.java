@@ -1,3 +1,5 @@
+package model;
+
 public class Switch extends Field {
     private TrapHole trapHole;
     private boolean isActivated;
@@ -5,7 +7,7 @@ public class Switch extends Field {
     private static int instances = 0;
     
     private static String nextName(){
-        return "Switch-" + instances++;
+        return "model.Switch-" + instances++;
     }
     
     public Switch(Pushable content, TrapHole trapHole) {
@@ -18,7 +20,7 @@ public class Switch extends Field {
     }
 
     public TrapHole getTrapHole() {
-        System.out.println("Switch, " + this.name + ", getTrapHole");
+        System.out.println("model.Switch, " + this.name + ", getTrapHole");
         return trapHole;
     }
 

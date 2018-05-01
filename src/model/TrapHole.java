@@ -1,3 +1,5 @@
+package model;
+
 public class TrapHole extends Hole {
 
     private boolean status;
@@ -5,7 +7,7 @@ public class TrapHole extends Hole {
     private static int instances = 0;
     
     private static String nextName(){
-        return "TrapHole-" + instances++;
+        return "model.TrapHole-" + instances++;
     }
     
     public TrapHole(Pushable content) {
@@ -17,13 +19,13 @@ public class TrapHole extends Hole {
     }
 
     public boolean getStatus(){
-        System.out.println("TrapHole, " + this.name + ", getStatus");
+        System.out.println("model.TrapHole, " + this.name + ", getStatus");
         return status;
     }
 
     public void changeTrapStatus(boolean value){
-        if(value){System.out.println("TrapHole, " + this.name + ", changeTrapStatus, new status: true");}
-        else{System.out.println("TrapHole, " + this.name + ", changeTrapStatus, new status: false");}
+        if(value){System.out.println("model.TrapHole, " + this.name + ", changeTrapStatus, new status: true");}
+        else{System.out.println("model.TrapHole, " + this.name + ", changeTrapStatus, new status: false");}
         status=value;
         if(status){                 // If activated, then checks the content.
             if(content!=null) {     // If there is content, then it destroys it.

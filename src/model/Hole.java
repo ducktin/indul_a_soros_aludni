@@ -1,9 +1,11 @@
+package model;
+
 public class Hole extends Field {
     
     private static int instances = 0;
     
     private static String nextName(){
-        return "Hole-" + instances++;
+        return "model.Hole-" + instances++;
     }
     
     public Hole(Pushable content) {
@@ -37,5 +39,17 @@ public class Hole extends Field {
     @Override
     public String getOutPutString() {
         return "H";
+    }
+
+    @Override
+    //Hole doesnt have a slippiness
+    public void makeSlippery() {
+        return;
+    }
+
+    @Override
+    //Hole doesnt have a slippiness
+    public void makeSticky() {
+        return;
     }
 }

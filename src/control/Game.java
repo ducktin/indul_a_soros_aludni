@@ -1,3 +1,7 @@
+package control;
+
+import model.*;
+
 import java.io.*;
 import java.util.Scanner;
 
@@ -65,7 +69,7 @@ public class Game {
         height = Integer.parseInt(line[1]);
     }
 
-    // void mert az App-nak nincs szüksége a Map-ra magán állítja be
+    // void mert az model.App-nak nincs szüksége a model.Map-ra magán állítja be
     public void init(File inputFile) {
         System.out.println("Initializing: " + inputFile.getName());
         Scanner fileScanner;
@@ -128,7 +132,7 @@ public class Game {
                     break;
                 case "s":
                     //slipperiness x y value
-                    field.slipperiness = Integer.parseInt(line[3]);
+                    field.setSlipperiness(Integer.parseInt(line[3]));
                     break;
                 default:
                     break;
@@ -245,14 +249,14 @@ public class Game {
     }
 
     public void startGame() {
-        System.out.println("Starting Game");
+        System.out.println("Starting control.Game");
 
         started = true;
 
     }
 
     public void endGame(int number) throws IOException {
-        System.out.println("Game Over");
+        System.out.println("control.Game Over");
         writeOutput(number);
         started = false;
     }

@@ -1,3 +1,4 @@
+package model;
 
 public class Crate implements Pushable {
 
@@ -10,7 +11,7 @@ public class Crate implements Pushable {
     private String name;
 
     private static String nextName(){
-        return "Crate-" + instances++;
+        return "model.Crate-" + instances++;
     }
     
     public Crate(Field field) {
@@ -18,7 +19,7 @@ public class Crate implements Pushable {
     }
     
     public Crate(Field field, String name) {
-        System.out.println("Crate " + name + " constructor " + field.getName());
+        System.out.println("model.Crate " + name + " constructor " + field.getName());
         this.currentField = field;
         this.movable = true;
         this.name = name;
@@ -26,27 +27,27 @@ public class Crate implements Pushable {
     }
 
     public String getName() {
-        // System.out.println("Crate " + "getName" + this.name);
+        // System.out.println("model.Crate " + "getName" + this.name);
         return this.name;
     }
 
     public void setField(Field field) {
-        //System.out.println("Crate, " + this.name + ", setField, New field: " + field.getName());
+        //System.out.println("model.Crate, " + this.name + ", setField, New field: " + field.getName());
         this.currentField = field;
     }
 
     public Field getCurrentField() {
-        //System.out.println("Crate, " + this.name + ", getCurrentField,  CurrentField:" + currentField.getName());
+        //System.out.println("model.Crate, " + this.name + ", getCurrentField,  CurrentField:" + currentField.getName());
         return currentField;
     }
 
     public boolean isMovable() {
-        //System.out.println("Crate, " + this.name + ", isMovable?, CurrentField:" + currentField.getName());
+        //System.out.println("model.Crate, " + this.name + ", isMovable?, CurrentField:" + currentField.getName());
         return movable;
     }
 
     public void immobilise() {
-        System.out.println("Crate, " + this.name + ", immobilise, CurrentField:" + currentField.getName());
+        System.out.println("model.Crate, " + this.name + ", immobilise, CurrentField:" + currentField.getName());
         movable = false;
         watcher.decreaseCrates();
     }
@@ -110,7 +111,7 @@ public class Crate implements Pushable {
 
     @Override
     public boolean push(Worker worker, Direction direction, int neededStrength) {
-        System.out.println("Crate, " + this.name + ", push, CurrentField:" + currentField.getName());
+        System.out.println("model.Crate, " + this.name + ", push, CurrentField:" + currentField.getName());
 
         if(!movable){
             return false;
@@ -146,13 +147,13 @@ public class Crate implements Pushable {
     }
 
     public Worker getLastMovedBy() {
-        System.out.println("Crate, " + this.name + ", getLastMovedBy, CurrentField:" + currentField.getName());
+        System.out.println("model.Crate, " + this.name + ", getLastMovedBy, CurrentField:" + currentField.getName());
         return this.lastMovedBy;
     }
 
     @Override
     public void destroy() {
-        System.out.println("Crate, " + this.name + ", destroy, CurrentField:" + currentField.getName());
+        System.out.println("model.Crate, " + this.name + ", destroy, CurrentField:" + currentField.getName());
         watcher.decreaseCrates();
         setField(null);
     }

@@ -1,3 +1,7 @@
+package model;
+
+import control.Game;
+
 public class Watcher {
 
     private static Watcher instance = null;
@@ -21,17 +25,17 @@ public class Watcher {
     }
 
     public void decreaseWorkers(){
-        System.out.println("Watcher, decreaseWorkers");
+        System.out.println("model.Watcher, decreaseWorkers");
         livingWorkers--;
     }
 
     public void decreaseCrates(){
-        System.out.println("Watcher, decreaseCrates");
+        System.out.println("model.Watcher, decreaseCrates");
         pushableCrates--;
     }
 
     public void decreaseGoalField(){
-        System.out.println("Watcher, decreaseGoalField");
+        System.out.println("model.Watcher, decreaseGoalField");
         freeGoalFields--;
     }
 }

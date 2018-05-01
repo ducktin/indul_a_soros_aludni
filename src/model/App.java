@@ -1,9 +1,13 @@
+package model;
+
+import control.Game;
+
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * App
+ * model.App
  * Entry point of the application
  */
 public class App {
@@ -46,7 +50,7 @@ public class App {
     private static int getInput(Scanner console) {
         String[] options = MapList.options;
         System.out.println("Input:\nmove: wasd/ijkl, x/m dropHoney, y/n dropOil");
-        String inputString = "Map to run (1-" + String.valueOf(options.length) + ")";
+        String inputString = "model.Map to run (1-" + String.valueOf(options.length) + ")";
 
         int choice = -1;
         while (choice < 1 || choice > options.length) {
