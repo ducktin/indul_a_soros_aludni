@@ -23,6 +23,8 @@ public class App {
             int mapNumber = choice;
 
             Game game = new Game();
+            Watcher watcher = Watcher.getInstance();
+            watcher.game = game;
 
             game.init(new java.io.File("map_" + mapNumber + ".txt"));
 
@@ -32,19 +34,17 @@ public class App {
 
             String command = console.nextLine().toLowerCase();
 
-            while (!command.equals("quit")) {
+            while (!command.equals("quit") && game.getStarted()) {
                 game.executeCommand(command);
                 command = console.nextLine().toLowerCase();
             }
             choice = getInput(console);
             try {
-                game.endGame(mapNumber);
+                game.writeOutput(mapNumber);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
-        System.out.println("Thanks for using the program!");
     }
 
     private static int getInput(Scanner console) {

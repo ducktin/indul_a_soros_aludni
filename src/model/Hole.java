@@ -31,6 +31,7 @@ public class Hole extends Field {
 
     @Override
     public void visit(Crate crate) {
+        System.out.println("HOOOLE");
         super.visit(crate);
         content.destroy();
         setContent(null);

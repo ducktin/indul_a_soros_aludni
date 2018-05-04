@@ -15,7 +15,7 @@ public class GoalField extends Field {
     
     public GoalField(Pushable content, String name) {
         super(content, name);
-        System.out.printf("model.GoalField, " + this.name + "constructor");
+        //System.out.printf("model.GoalField, " + this.name + "constructor");
         this.watcher = Watcher.getInstance();
     }
 

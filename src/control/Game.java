@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Game {
     protected Map map;
-    private int goalFields = 0;
+    Watcher watcher;
     private boolean started = false;
     private int width = 0;
     private int height = 0;
@@ -44,10 +44,10 @@ public class Game {
             case "j":
                 map.moveWorker(1, Direction.LEFT);
                 break;
-            case "k":
+            case "l":
                 map.moveWorker(1, Direction.RIGHT);
                 break;
-            case "l":
+            case "k":
                 map.moveWorker(1, Direction.DOWN);
                 break;
             case "n":
@@ -83,7 +83,8 @@ public class Game {
         // Preparing the map
         readDimensions(fileScanner);
         map = new Map(width, height);
-        
+        watcher = Watcher.getInstance();
+
         // Create filler Fields, will be replaced, if needed
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
@@ -98,12 +99,13 @@ public class Game {
             String[] line = fileScanner.nextLine().split(" ");
             int x = Integer.parseInt(line[1]);
             int y = Integer.parseInt(line[2]);
-    
+
             Field field = map.getFields()[x][y];
             Pushable content = map.getFields()[x][y].getPushable();
-            
+
             switch (line[0]) {
                 case "H":
+                    //map.getFields()[x][y] = new Hole(content);
                     map.addField(x, y, new Hole(content));
                     break;
                 case "S":
@@ -119,16 +121,19 @@ public class Game {
                 case "C":
                     Crate crate = new Crate(field);
                     field.setContent(crate);
+                    map.addCrate(crate);
+                    watcher.increaseCrates();
                     break;
                 case "W":
                     int strength = Integer.parseInt(line[3]);
                     Worker worker = new Worker(field, strength);
                     map.addWorker(worker);
                     field.setContent(worker);
+                    watcher.increaseWorkers();
                     break;
                 case "G":
                     map.addField(x, y, new GoalField(content));
-                    goalFields++;
+                    watcher.increaseGoalField();
                     break;
                 case "s":
                     //slipperiness x y value
@@ -138,8 +143,7 @@ public class Game {
                     break;
             }
         }
-
-        //Neighbours if there's only one line of fields
+//Neighbours if there's only one line of fields
         if (width == 1) {
             //baloldali széle
             map.getFields()[0][0].setNeighbor(Direction.RIGHT, map.getFields()[0][1]);
@@ -207,9 +211,16 @@ public class Game {
                 }
             }
         }
+        //CRATES MOVABITLIY CHECK
+        for (Crate crate: map.getCrates()) {
+            crate.checkMovability();
+            if(!crate.isMovable()){
+                watcher.decreaseCrates();
+            }
+        }
     }
 
-    private void writeOutput(int testNumber) throws IOException {
+    public void writeOutput(int testNumber) throws IOException {
         PrintWriter writer = new PrintWriter("testOutput_" + testNumber + ".txt", "UTF-8");
         writer.println(width + " " + height);
         for (int i = 0; i < width; i++) {
@@ -236,12 +247,13 @@ public class Game {
                 if(field.getPushable()!=null){
                     System.out.print("[" + field.getPushable().getOutPutString()+ "]" + "  ");
                 }
-                else if(field.getOutPutString()==null)
-                {
-                    System.out.print("[" + " " + "]" + "  ");
-                }
-                else{
-                    System.out.print("[" + field.getOutPutString() + "]" + "  ");
+                if(field.getPushable()==null){
+                    if(field.getOutPutString()!=null){
+                        System.out.print("[" + field.getOutPutString()+ "]" + "  ");
+                    }
+                    else{
+                        System.out.print("[" + " " + "]" + "  ");
+                    }
                 }
             }
             System.out.println();
@@ -255,9 +267,9 @@ public class Game {
 
     }
 
-    public void endGame(int number) throws IOException {
+    public void endGame() {
         System.out.println("control.Game Over");
-        writeOutput(number);
+        //writeOutput(number);
         started = false;
     }
 

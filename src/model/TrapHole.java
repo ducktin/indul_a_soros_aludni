@@ -38,7 +38,7 @@ public class TrapHole extends Hole {
 
     @Override
     public void visit(Worker worker) {
-        System.out.printf(this.name+" Visit worker");
+        //System.out.printf(this.name+" Visit worker");
         setContent(worker);
         worker.setField(this);
         if(status){

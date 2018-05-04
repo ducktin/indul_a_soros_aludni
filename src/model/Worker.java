@@ -51,22 +51,22 @@ public class Worker implements Squeezable, Pushable {
     }
 
     public int getPoints() {
-        System.out.println("model.Worker, " + this.name + ", getPoints, " + currentField.getName());
+        //System.out.println("model.Worker, " + this.name + ", getPoints, " + currentField.getName());
         return points;
     }
 
     public void givePoint() {
-        System.out.println("model.Worker, " + this.name + ", givePoint, " + currentField.getName());
+        //System.out.println("model.Worker, " + this.name + ", givePoint, " + currentField.getName());
         points++;
     }
 
     public void setField(Field nextField) {
-        System.out.println("model.Worker, " + this.name + ", setField from: " + currentField.getName() + " to: " + nextField.getName());
+        //System.out.println("model.Worker, " + this.name + ", setField from: " + currentField.getName() + " to: " + nextField.getName());
         this.currentField = nextField;
     }
 
     public Field getCurrentField() {
-        System.out.println("model.Worker, " + this.name + ", getCurrentField, " + currentField.getName());
+        //System.out.println("model.Worker, " + this.name + ", getCurrentField, " + currentField.getName());
         return currentField;
     }
 
@@ -80,7 +80,7 @@ public class Worker implements Squeezable, Pushable {
 
     @Override
     public boolean push(Worker worker, Direction direction, int neededStrength) {
-        System.out.println("model.Worker, " + this.name + ", push, " + currentField.getName());
+        //System.out.println("model.Worker, " + this.name + ", push, " + currentField.getName());
 
         //Add the current field slippiness to the needed Strength to push the chain
         neededStrength += this.getCurrentField().getSlipperiness();
@@ -115,7 +115,7 @@ public class Worker implements Squeezable, Pushable {
 
     @Override
     public void destroy() {
-        System.out.println("model.Worker, " + this.name + ", destroy, " + currentField.getName());
+        //System.out.println("model.Worker, " + this.name + ", destroy, " + currentField.getName());
         watcher.decreaseWorkers();
         alive = false;
         currentField = null;
@@ -123,7 +123,7 @@ public class Worker implements Squeezable, Pushable {
 
     @Override
     public boolean isMovable() {
-        System.out.println("model.Worker, " + this.name + ", isMovable, " + currentField.getName());
+        //System.out.println("model.Worker, " + this.name + ", isMovable, " + currentField.getName());
         return true;
     }
 
@@ -134,19 +134,19 @@ public class Worker implements Squeezable, Pushable {
 
     @Override
     public void die() {
-        System.out.println("model.Worker, " + this.name + ", die, " + currentField.getName());
+        //System.out.println("model.Worker, " + this.name + ", die, " + currentField.getName());
         watcher.decreaseWorkers();
         currentField.removePushable();
         alive = false;
     }
 
     public void dropOil() {
-        System.out.println("model.Worker, " + this.name + ", dropOil, " + currentField.getName());
+        //System.out.println("model.Worker, " + this.name + ", dropOil, " + currentField.getName());
         this.currentField.makeSlippery();
     }
 
     public void dropHoney() {
-        System.out.println("model.Worker, " + this.name + ", dropHoney, " + currentField.getName());
+        //System.out.println("model.Worker, " + this.name + ", dropHoney, " + currentField.getName());
         this.currentField.makeSticky();
     }
 
