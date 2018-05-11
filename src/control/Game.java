@@ -211,7 +211,7 @@ public class Game {
                 }
             }
         }
-        //CRATES MOVABITLIY CHECK
+        //CRATES MOVABITLIY CHECK TODO: REWORK TO RECURSION
         for (Crate crate: map.getCrates()) {
             crate.checkMovability();
             if(!crate.isMovable()){

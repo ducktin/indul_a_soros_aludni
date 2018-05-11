@@ -1,6 +1,7 @@
 package model;
 
 import control.Game;
+import view.Menu;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
@@ -11,10 +12,13 @@ import java.util.Scanner;
  * Entry point of the application
  */
 public class App {
-
+    private static Menu menu;
     public static void main(String[] args) {
 
-        Scanner console = new Scanner(System.in);
+        menu = new Menu();
+        menu.setVisible(true);
+
+        /*Scanner console = new Scanner(System.in);
 
         MapList.printOptions();
         int choice = getInput(console);
@@ -44,7 +48,7 @@ public class App {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 
     private static int getInput(Scanner console) {
