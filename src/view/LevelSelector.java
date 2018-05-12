@@ -47,7 +47,7 @@ public class LevelSelector extends JFrame {
                 
                 View gameView = new View();
                 gameView.setVisible(true);
-
+                this.dispose();
             });
         }
 
