@@ -6,6 +6,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Game {
+    private static Game instance = null;
     protected Map map;
     Watcher watcher;
     private boolean started = false;
@@ -15,6 +16,19 @@ public class Game {
     public boolean getStarted() {
         return started;
     }
+
+    private Game() {
+        //exists only to defeat instantiation
+    }
+
+    public static Game getInstance() {
+        if (instance == null) {
+            instance = new Game();
+        }
+        return instance;
+    }
+
+
 
     public void executeCommand(String command) {
         switch (command) {

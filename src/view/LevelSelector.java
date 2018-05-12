@@ -1,5 +1,6 @@
 package view;
 
+import control.Controller;
 import control.Game;
 import model.MapList;
 import javax.swing.*;
@@ -37,6 +38,8 @@ public class LevelSelector extends JFrame {
             labelPanel.add(new JLabel(MapList.options[i]));
             button.addActionListener(e -> {
                 //TODO: START THE MAP/GAME
+                Controller controller = new Controller();
+
 
             });
         }
