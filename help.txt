@@ -1,0 +1,49 @@
+Controls:
+	Player 1:
+		Move Left: Left Arrow Key
+		Move Right: Right Arrow Key
+		Move Up: Up Arrow Key
+		Move Down: Down Arrow Key
+		
+		Honey: Num Pad 1
+		Oil: Num Pad 2
+		
+	Player 2:
+		Move Left: A
+		Move Right D
+		Move Up: W
+		Move Down: S
+		
+		Honey: E
+		Oil: Q
+		
+	Player 3:
+		Move Left: J
+		Move Right: L
+		Move Up: I
+		Move Down: K
+		
+		Honey: U
+		Oil: O
+	
+Rules:
+	The players compete with each other for points, earned by pushing crates to
+	specific fields, called goal fields. For every crate put on it's place the player
+	pushing it will get points. Boxes pushed to the goal fields will become inmoveable
+	objects.
+	Player with the most points win.
+	
+	The game ends with all the crates getting to the goals, or when no crate can be pushed
+	from it's current position.
+	
+	Additional hindrances, in the form of holes can be found on the map, when a player moves
+	or gets pushed into one, they instantly lost. When crates are pushed into the holes, they
+	disappear.
+	
+	Holes can be of two types, one is always appear as a hole, the other is a simple field until
+	a crate is pushed on the switch controlling the trapdoor.
+	
+	Players can adittionally put honey or oil on the field they are currently on, making it 
+	respectively harder or easier to push crates on them.
+	
+	Players can push a box, multiple boxes, and even each other.

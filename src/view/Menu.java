@@ -39,7 +39,8 @@ public class Menu extends JFrame {
         buttonContainer.add(exitButton);
 
         helpButton.addActionListener(e -> {
-            //TODO:new window for the helpButton? Controls, rules, túlértékelt
+            HelpWindow helpWindow = new HelpWindow();
+            helpWindow.frame.setVisible(true);
         });
 
         //Action listener for exitButton button
