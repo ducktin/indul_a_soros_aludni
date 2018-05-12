@@ -36,10 +36,17 @@ public class LevelSelector extends JFrame {
             JButton button = new JButton("Level " + i);
             buttonsPanel.add(button);
             labelPanel.add(new JLabel(MapList.options[i]));
+            final String mapNumber = ""+(i + 1);
             button.addActionListener(e -> {
                 //TODO: START THE MAP/GAME
-                Controller controller = new Controller();
-
+                // Controller controller = new Controller();
+                Game game = Game.getInstance();
+                System.out.println(Game.getInstance());
+    
+                game.init(new java.io.File("map_" + mapNumber + ".txt"));
+                
+                View gameView = new View();
+                gameView.setVisible(true);
 
             });
         }
