@@ -232,6 +232,7 @@ public class Game {
                 watcher.decreaseCrates();
             }
         }
+        this.startGame();
     }
 
     public void writeOutput(int testNumber) throws IOException {

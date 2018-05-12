@@ -1,13 +1,13 @@
 package view;
 
 import control.Controller;
+import control.Game;
 
 import javax.swing.*;
+import java.io.Console;
 import java.util.List;
 
 public class View extends JFrame{
-
-    private Controller controller;
 
     protected JPanel jPanel;
 
@@ -15,6 +15,11 @@ public class View extends JFrame{
 
     public void drawAll(){
 
+    }
+    
+    View (){
+        addKeyListener(new Controller());
+        System.out.println(Game.getInstance());
     }
 
 }

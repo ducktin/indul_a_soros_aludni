@@ -11,7 +11,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.security.Key;
 
-public class Controller extends KeyAdapter implements KeyListener {
+public class Controller implements KeyListener {
 
     Game game;
 
