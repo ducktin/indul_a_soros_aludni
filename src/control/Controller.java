@@ -32,7 +32,8 @@ public class Controller implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
-        System.out.println("key fired:" + key);
+        if (!game.getStarted())
+            return;
     
         switch (key) {
             //Player No.1

@@ -55,6 +55,10 @@ public class GameBoard extends JPanel {
         super.paint(g);
         initDrawables(this.game);
         drawMap(g);
+        if(!game.getStarted()){
+            g.setColor(new Color(255, 0, 0));
+            g.drawString("Over", 15, 20);
+        }
     }
     
     public void drawMap(Graphics g) {
