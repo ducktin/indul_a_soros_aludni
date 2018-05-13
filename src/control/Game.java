@@ -285,4 +285,8 @@ public class Game {
         started = false;
     }
     
+    public Map getMap(){
+        return map;
+    }
+    
 }
