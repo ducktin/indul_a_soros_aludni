@@ -28,6 +28,7 @@ public class Switch extends Field {
     @Override
     public void removePushable() {
         super.removePushable();
+        isActivated = false;
         trapHole.changeTrapStatus(false);
     }
 
@@ -35,10 +36,15 @@ public class Switch extends Field {
     public void visit(Worker worker) {
         super.visit(worker); // The content is the current worker, and nothing else happens.
     }
+    
+    public boolean isActive(){
+        return this.isActivated;
+    }
 
     @Override
     public void visit(Crate crate) {
         super.visit(crate);
+        isActivated = true;
         trapHole.changeTrapStatus(true);
     }
 
