@@ -2,6 +2,7 @@ package control;
 
 import model.Direction;
 import model.Watcher;
+import view.GameBoard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,10 +14,12 @@ import java.security.Key;
 
 public class Controller implements KeyListener {
 
-    Game game;
+    private GameBoard gameBoard;
+    private Game game;
 
-    public Controller(Game game) {
-        this.game = game;
+    public Controller(GameBoard gameboard) {
+        this.gameBoard = gameboard;
+        this.game = gameBoard.getGame();
         game.watcher = Watcher.getInstance();
     }
 
@@ -87,6 +90,7 @@ public class Controller implements KeyListener {
             default:
                 break;
         }
+        gameBoard.repaint();
     }
 
 
