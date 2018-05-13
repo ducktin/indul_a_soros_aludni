@@ -25,7 +25,7 @@ public class ImageRepository {
     }
     
     public Image getFieldImage(){
-        Image img = getImage("pics/Field.png", "field");
+        Image img = getImage("pics/Ground.png", "field");
         return img;
     }
     
