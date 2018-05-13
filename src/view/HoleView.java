@@ -4,10 +4,14 @@ import model.Hole;
 
 import java.awt.*;
 
-public class HoleGraphic implements Drawable {
+public class HoleView implements Drawable {
     
     protected Hole hole;
     protected Image img;
+    
+    public HoleView(Hole hole) {
+        this.hole = hole;
+    }
     
     
     @Override

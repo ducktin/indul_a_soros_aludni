@@ -11,6 +11,10 @@ public class FieldView implements Drawable {
     protected Image imgHoney;
     protected Image imgOil;
     
+    public FieldView(Field field) {
+        this.field = field;
+    }
+    
     @Override
     public void draw(Graphics g) {
     
