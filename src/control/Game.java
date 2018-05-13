@@ -12,24 +12,22 @@ public class Game {
     private boolean started = false;
     private int width = 0;
     private int height = 0;
-
+    
     public boolean getStarted() {
         return started;
     }
-
+    
     private Game() {
         //exists only to defeat instantiation
     }
-
+    
     public static Game getInstance() {
         if (instance == null) {
             instance = new Game();
         }
         return instance;
     }
-
-
-
+    
     public void executeCommand(String command) {
         switch (command) {
             //Player No.1
@@ -76,13 +74,13 @@ public class Game {
         }
         drawConsole();
     }
-
+    
     private void readDimensions(Scanner in) {
         String[] line = in.nextLine().split(" ");
         width = Integer.parseInt(line[0]);
         height = Integer.parseInt(line[1]);
     }
-
+    
     // void mert az model.App-nak nincs szüksége a model.Map-ra magán állítja be
     public void init(File inputFile) {
         System.out.println("Initializing: " + inputFile.getName());
@@ -93,30 +91,30 @@ public class Game {
             e.printStackTrace();
             return;
         }
-
+        
         // Preparing the map
         readDimensions(fileScanner);
         map = new Map(width, height);
         watcher = Watcher.getInstance();
-
+        
         // Create filler Fields, will be replaced, if needed
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 map.addField(i, j, new Field(null));
             }
         }
-
+        
         int testLineCount = Integer.parseInt(fileScanner.nextLine());
-
+        
         // Read next line, and create object accordingly
         for (int i = 0; i < testLineCount; i++) {
             String[] line = fileScanner.nextLine().split(" ");
             int x = Integer.parseInt(line[1]);
             int y = Integer.parseInt(line[2]);
-
+            
             Field field = map.getFields()[x][y];
             Pushable content = map.getFields()[x][y].getPushable();
-
+            
             switch (line[0]) {
                 case "H":
                     //map.getFields()[x][y] = new Hole(content);
@@ -226,15 +224,15 @@ public class Game {
             }
         }
         //CRATES MOVABITLIY CHECK TODO: REWORK TO RECURSION
-        for (Crate crate: map.getCrates()) {
+        for (Crate crate : map.getCrates()) {
             crate.checkMovability();
-            if(!crate.isMovable()){
+            if (!crate.isMovable()) {
                 watcher.decreaseCrates();
             }
         }
         this.startGame();
     }
-
+    
     public void writeOutput(int testNumber) throws IOException {
         PrintWriter writer = new PrintWriter("testOutput_" + testNumber + ".txt", "UTF-8");
         writer.println(width + " " + height);
@@ -254,19 +252,18 @@ public class Game {
         }
         writer.close();
     }
-
-    public void drawConsole(){
+    
+    public void drawConsole() {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 Field field = map.getFields()[i][j];
-                if(field.getPushable()!=null){
-                    System.out.print("[" + field.getPushable().getOutPutString()+ "]" + "  ");
+                if (field.getPushable() != null) {
+                    System.out.print("[" + field.getPushable().getOutPutString() + "]" + "  ");
                 }
-                if(field.getPushable()==null){
-                    if(field.getOutPutString()!=null){
-                        System.out.print("[" + field.getOutPutString()+ "]" + "  ");
-                    }
-                    else{
+                if (field.getPushable() == null) {
+                    if (field.getOutPutString() != null) {
+                        System.out.print("[" + field.getOutPutString() + "]" + "  ");
+                    } else {
                         System.out.print("[" + " " + "]" + "  ");
                     }
                 }
@@ -274,18 +271,18 @@ public class Game {
             System.out.println();
         }
     }
-
+    
     public void startGame() {
         System.out.println("Starting control.Game");
-
+        
         started = true;
-
+        
     }
-
+    
     public void endGame() {
         System.out.println("control.Game Over");
         //writeOutput(number);
         started = false;
     }
-
+    
 }

@@ -13,8 +13,9 @@ import java.util.Scanner;
  */
 public class App {
     private static Menu menu;
+    
     public static void main(String[] args) {
-
+        
         menu = new Menu();
         menu.setVisible(true);
 
@@ -50,12 +51,12 @@ public class App {
             }
         }*/
     }
-
+    
     private static int getInput(Scanner console) {
         String[] options = MapList.options;
         System.out.println("Input:\nmove: wasd/ijkl, x/m dropHoney, y/n dropOil");
         String inputString = "model.Map to run (1-" + String.valueOf(options.length) + ")";
-
+        
         int choice = -1;
         while (choice < 1 || choice > options.length) {
             System.out.print(inputString);
@@ -68,8 +69,8 @@ public class App {
                 console.nextLine();
             }
         }
-
+        
         return choice;
     }
-
+    
 }

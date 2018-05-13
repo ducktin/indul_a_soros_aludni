@@ -17,11 +17,11 @@ public class MapList {
             "Normal, but Traps and Holes /2Player",
             "Normal, Some Crates, Some model.GoalField part 2 /2Player"
     };
-
+    
     public static void printOptions() {
         for (int i = 0; i < MapList.options.length; i++) {
             System.out.println(MapList.options[i]);
         }
     }
-
+    
 }

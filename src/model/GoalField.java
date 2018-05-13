@@ -5,7 +5,7 @@ public class GoalField extends Field {
     
     private static int instances = 0;
     
-    private static String nextName(){
+    private static String nextName() {
         return "model.GoalField-" + instances++;
     }
     

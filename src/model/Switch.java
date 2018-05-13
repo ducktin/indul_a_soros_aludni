@@ -6,7 +6,7 @@ public class Switch extends Field {
     
     private static int instances = 0;
     
-    private static String nextName(){
+    private static String nextName() {
         return "model.Switch-" + instances++;
     }
     
@@ -16,7 +16,7 @@ public class Switch extends Field {
     
     public Switch(Pushable content, TrapHole trapHole, String name) {
         super(content, name);
-        this.trapHole=trapHole;
+        this.trapHole = trapHole;
     }
 
     public TrapHole getTrapHole() {
