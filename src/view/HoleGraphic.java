@@ -9,8 +9,9 @@ public class HoleGraphic implements Drawable {
     protected Hole hole;
     protected Image img;
     
+    
     @Override
-    public void draw() {
+    public void draw(Graphics g) {
     
     }
 }

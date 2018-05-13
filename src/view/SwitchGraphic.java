@@ -10,7 +10,8 @@ public class SwitchGraphic implements Drawable {
     protected Image img;
     
     @Override
-    public void draw() {
+    public void draw(Graphics g) {
+    
     
     }
 }

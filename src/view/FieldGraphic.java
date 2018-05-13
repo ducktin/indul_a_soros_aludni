@@ -10,9 +10,9 @@ public class FieldGraphic implements Drawable {
     protected Image imgBase;
     protected Image imgHoney;
     protected Image imgOil;
-
+    
     @Override
-    public void draw() {
-
+    public void draw(Graphics g) {
+    
     }
 }

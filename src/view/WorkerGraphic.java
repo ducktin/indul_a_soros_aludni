@@ -9,8 +9,9 @@ public class WorkerGraphic implements Drawable {
     protected Worker worker;
     protected Image img;
     
+    
     @Override
-    public void draw() {
+    public void draw(Graphics g) {
     
     }
 }

@@ -9,8 +9,9 @@ public class GoalFieldGraphic implements Drawable {
     protected GoalField goalField;
     protected Image img;
     
+    
     @Override
-    public void draw() {
+    public void draw(Graphics g) {
     
     }
 }

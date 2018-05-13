@@ -9,8 +9,9 @@ public class TrapHoleGraphic implements Drawable {
     protected TrapHole trapHole;
     protected Image img;
     
+    
     @Override
-    public void draw() {
+    public void draw(Graphics g) {
     
     }
 }
