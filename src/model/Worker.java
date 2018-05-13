@@ -125,6 +125,10 @@ public class Worker implements Squeezable, Pushable {
         return true;
     }
     
+    public boolean isAlive(){
+        return alive;
+    }
+    
     @Override
     public String getName() {
         return name;

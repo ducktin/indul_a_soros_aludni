@@ -38,6 +38,7 @@ public class LevelSelector extends JFrame {
             labelPanel.add(new JLabel(MapList.options[i]));
             final String mapNumber = "" + (i + 1);
             button.addActionListener(e -> {
+                Game.destroyGame();  // ha van valami Game akkor megöljük
                 Game game = Game.getInstance();
                 game.init(new java.io.File("map_" + mapNumber + ".txt"));
                 

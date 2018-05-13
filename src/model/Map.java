@@ -9,8 +9,13 @@ public class Map {
     private Field[][] fields;
     
     public void moveWorker(int id, Direction direction) {
-        //System.out.println("model.Map, moveWorker, workerID: " + id);
-        workers.get(id).move(direction);
+        System.out.println("model.Map, moveWorker, workerID: " + id);
+        if(workers.size() > id){
+            Worker w = workers.get(id);
+            if (w.isAlive()){
+                w.move(direction);
+            }
+        }
     }
     
     public Map(int mapWidth, int mapHeight) {

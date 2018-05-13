@@ -1,21 +1,59 @@
 package view;
 
-import model.GoalField;
+import model.*;
 
 import java.awt.*;
 
 public class GoalFieldView implements Drawable {
     
+    private final int SPACE = 64;
+    
     protected GoalField goalField;
-    protected Image img;
+    protected Image imgBase;
+    protected Image imgOil;
+    protected Image imgHoney;
+    
+    private int x;
+    private int y;
     
     public GoalFieldView(GoalField goalField, int x, int y) {
         this.goalField = goalField;
+        this.x = x * SPACE;
+        this.y = y * SPACE;
+        getImages();
+    }
+    
+    private void getImages() {
+        ImageRepository repo = ImageRepository.getInstance();
+        this.imgBase = repo.getGoalFieldImage();
+        this.imgOil = repo.getOilImage();
+        this.imgHoney = repo.getHoneyImage();
     }
     
     
     @Override
     public void draw(Graphics g) {
+        System.out.println("drawing goalField on " + "x-" + x + ", y-" + y);
+        g.drawImage(imgBase, this.x, this.y, null);
+        
+        if (goalField.getSlipperiness() == 0) {
+            g.drawImage(imgOil, this.x, this.y, null);
+        } else if (goalField.getSlipperiness() == 2) {
+            g.drawImage(imgHoney, this.x, this.y, null);
+        }
     
+        Pushable item = this.goalField.getPushable();
+        if (item instanceof Wall){
+            WallView wv = new WallView((Wall) item, this.x, this.y);
+            wv.draw(g);
+        }
+        if (item instanceof Crate){
+            CrateView cv = new CrateView((Crate) item, this.x, this.y);
+            cv.draw(g);
+        }
+        if (item instanceof Worker){
+            WorkerView wv = new WorkerView((Worker) item, this.x, this.y);
+            wv.draw(g);
+        }
     }
 }

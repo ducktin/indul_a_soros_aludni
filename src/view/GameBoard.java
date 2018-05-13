@@ -30,21 +30,20 @@ public class GameBoard extends JPanel {
         Map map = game.getMap();
         for (int x = 0; x < map.getWidth(); x++) {
             for (int y = 0; y < map.getHeight(); y++) {
-                Field field = map.getFields()[x][y];
-                System.out.println(field);
+                Field field = map.getFields()[y][x];
                 if (field instanceof TrapHole){
                     drawables.add(new TrapHoleView((TrapHole) field, x, y));
                 }
-                if (field instanceof Hole){
+                else if (field instanceof Hole){
                     drawables.add(new HoleView((Hole) field, x, y));
                 }
-                if (field instanceof Switch){
+                else if (field instanceof Switch){
                     drawables.add(new SwitchView((Switch) field, x, y));
                 }
-                if (field instanceof GoalField){
+                else if (field instanceof GoalField){
                     drawables.add(new GoalFieldView((GoalField) field, x, y));
                 }
-                if (field instanceof Field){
+                else if (field instanceof Field){
                    drawables.add(new FieldView(field, x, y));
                 }
             }

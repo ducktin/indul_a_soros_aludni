@@ -27,6 +27,9 @@ public class Game {
         }
         return instance;
     }
+    public static void destroyGame(){
+        instance = null;
+    }
     
     public void executeCommand(String command) {
         switch (command) {
@@ -68,7 +71,19 @@ public class Game {
             case "m":
                 map.getWorkers().get(1).dropHoney();
                 break;
-            //TODO:Player No.3???? Just with cursor arrows-> need the keylistner and grapich shit
+            case "^":
+                map.moveWorker(2, Direction.UP);
+                break;
+            case "<-":
+                map.moveWorker(2, Direction.LEFT);
+                break;
+            case "->":
+                map.moveWorker(3, Direction.RIGHT);
+                break;
+            case "v":
+                map.moveWorker(3, Direction.DOWN);
+                break;
+                
             default:
                 break;
         }

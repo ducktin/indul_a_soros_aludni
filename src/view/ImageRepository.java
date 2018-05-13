@@ -75,7 +75,7 @@ public class ImageRepository {
     }
     
     private Image getImage(String imagePath, String mapPath) {
-        Image img = imageMap.get("crate");
+        Image img = imageMap.get(mapPath);
         if(img == null){
             try {
                 URL url = getClass().getResource(imagePath);

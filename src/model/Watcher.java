@@ -5,7 +5,6 @@ import control.Game;
 public class Watcher {
 
     private static Watcher instance = null;
-    protected Game game;
     private static int livingWorkers;
     private static int pushableCrates;
     private static int freeGoalFields;
@@ -44,7 +43,7 @@ public class Watcher {
         System.out.println("model.Watcher, decreaseWorkers");
         livingWorkers--;
         if (livingWorkers <= 0) {
-            game.endGame();
+            Game.getInstance().endGame();
             //TODO:end the game
         }
     }
@@ -54,7 +53,7 @@ public class Watcher {
         pushableCrates--;
         if (pushableCrates <= 0) {
             //TODO:end the game
-            game.endGame();
+            Game.getInstance().endGame();
         }
     }
 
@@ -62,7 +61,7 @@ public class Watcher {
         System.out.println("model.Watcher, decreaseGoalField");
         freeGoalFields--;
         if (freeGoalFields <= 0) {
-            game.endGame();
+            Game.getInstance().endGame();
             //TODO:end the game
         }
     }
