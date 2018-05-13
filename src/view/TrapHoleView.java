@@ -9,7 +9,7 @@ public class TrapHoleView implements Drawable {
     protected TrapHole trapHole;
     protected Image img;
     
-    public TrapHoleView(TrapHole trapHole) {
+    public TrapHoleView(TrapHole trapHole, int x, int y) {
         this.trapHole = trapHole;
     }
     

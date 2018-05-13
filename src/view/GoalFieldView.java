@@ -9,7 +9,7 @@ public class GoalFieldView implements Drawable {
     protected GoalField goalField;
     protected Image img;
     
-    public GoalFieldView(GoalField goalField) {
+    public GoalFieldView(GoalField goalField, int x, int y) {
         this.goalField = goalField;
     }
     

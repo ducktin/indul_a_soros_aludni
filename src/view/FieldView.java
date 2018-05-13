@@ -11,21 +11,33 @@ public class FieldView implements Drawable {
     
     protected Field field;
     protected Image imgBase;
-    protected Image imgHoney;
     protected Image imgOil;
+    protected Image imgHoney;
+    private int x;
+    private int y;
     
-    public FieldView(Field field) {
+    public FieldView(Field field, int x, int y) {
         this.field = field;
-        imgBase = ImageRepository.getInstance().getFieldImage();
+        this.x = x * SPACE;
+        this.y = y * SPACE;
+        
+        loadImages();
+    }
+    
+    private void loadImages() {
+        this.imgBase = ImageRepository.getInstance().getFieldImage();
+        this.imgOil = ImageRepository.getInstance().getFieldImage();
+        this.imgHoney = ImageRepository.getInstance().getFieldImage();
     }
     
     @Override
     public void draw(Graphics g) {
-        g.drawImage(imgBase, 0, 0, null);
+        System.out.println("drawing: " + "x-" + x + ", y-" + y);
+        g.drawImage(imgBase, this.x, this.y, null);
         if (field.getSlipperiness() == 0) {
-            g.drawImage(imgOil, 0, 0, null);
+            g.drawImage(imgOil, this.x, this.y, null);
         } else if (field.getSlipperiness() == 2) {
-            g.drawImage(imgHoney, 0, 0, null);
+            g.drawImage(imgHoney, this.x, this.y, null);
             
         }
     }

@@ -25,15 +25,60 @@ public class ImageRepository {
     }
     
     public Image getFieldImage(){
-        Image img = imageMap.get("field");
+        Image img = getImage("pics/Field.png", "field");
+        return img;
+    }
+    
+    public Image getOilImage(){
+        Image img = getImage("pics/Oil.png", "oil");
+        return img;
+    }
+    
+    public Image getHoneyImage(){
+        Image img = getImage("pics/HoneyHD.png", "honey");
+        return img;
+    }
+    
+    public Image getCrateImage(){
+        Image img = getImage("pics/Crate.png", "crate");
+        return img;
+    }
+    
+    public Image getGoalFieldImage(){
+        Image img = getImage("pics/GoalField.png", "goalField");
+        return img;
+    }
+    
+    public Image getHoleImage(){
+        Image img = getImage("pics/Hole.png", "hole");
+        return img;
+    }
+    
+    public Image getSwitchImage(){
+        Image img = getImage("pics/Switch_2.png", "switch");
+        return img;
+    }
+    
+    public Image getWallImage(){
+        Image img = getImage("pics/Wall.png", "wall");
+        return img;
+    }
+    
+    public Image getWorkerImage(){
+        Image img = getImage("pics/HD_WORKER_DLC.png", "worker");
+        return img;
+    }
+    
+    private Image getImage(String imagePath, String mapPath) {
+        Image img = imageMap.get("crate");
         if(img == null){
             try {
-                URL url = getClass().getResource("pics/Ground.png");
+                URL url = getClass().getResource(imagePath);
                 img = ImageIO.read(new File(url.getPath()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            imageMap.put("field", img);
+            imageMap.put(mapPath, img);
         }
         return img;
     }

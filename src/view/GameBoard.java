@@ -11,8 +11,7 @@ import java.util.List;
 
 public class GameBoard extends JPanel {
     
-    private final int OFFSET = 30;
-    private final int SPACE = 32;
+    private final int SPACE = 64;
     
     private Game game;
     private List<Drawable> drawables = new ArrayList<>();
@@ -27,25 +26,26 @@ public class GameBoard extends JPanel {
     }
     
     private void initDrawables(Game game) {
+        drawables.clear();
         Map map = game.getMap();
         for (int x = 0; x < map.getWidth(); x++) {
             for (int y = 0; y < map.getHeight(); y++) {
                 Field field = map.getFields()[x][y];
-                
+                System.out.println(field);
                 if (field instanceof TrapHole){
-                    drawables.add(new TrapHoleView((TrapHole) field));
+                    drawables.add(new TrapHoleView((TrapHole) field, x, y));
                 }
                 if (field instanceof Hole){
-                    drawables.add(new HoleView((Hole) field));
+                    drawables.add(new HoleView((Hole) field, x, y));
                 }
                 if (field instanceof Switch){
-                    drawables.add(new SwitchView((Switch) field));
+                    drawables.add(new SwitchView((Switch) field, x, y));
                 }
                 if (field instanceof GoalField){
-                    drawables.add(new GoalFieldView((GoalField) field));
+                    drawables.add(new GoalFieldView((GoalField) field, x, y));
                 }
                 if (field instanceof Field){
-                    drawables.add(new FieldView(field));
+                   drawables.add(new FieldView(field, x, y));
                 }
             }
         }
@@ -54,6 +54,7 @@ public class GameBoard extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        initDrawables(this.game);
         drawMap(g);
     }
     
@@ -61,12 +62,11 @@ public class GameBoard extends JPanel {
         
         g.setColor(new Color(250, 240, 170));
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
-        
+        System.out.println(drawables.size());
         for (int i = 0; i < drawables.size(); i++) {
 
             Drawable item = drawables.get(i);
             item.draw(g);
-            
         }
     }
     

@@ -9,7 +9,7 @@ public class SwitchView implements Drawable {
     protected Switch aSwitch;
     protected Image img;
     
-    public SwitchView(Switch aSwitch) {
+    public SwitchView(Switch aSwitch, int x, int y) {
         this.aSwitch = aSwitch;
     }
     
