@@ -25,9 +25,10 @@ public class FieldView implements Drawable {
     }
     
     private void loadImages() {
-        this.imgBase = ImageRepository.getInstance().getFieldImage();
-        this.imgOil = ImageRepository.getInstance().getFieldImage();
-        this.imgHoney = ImageRepository.getInstance().getFieldImage();
+        ImageRepository repo = ImageRepository.getInstance();
+        this.imgBase = repo.getFieldImage();
+        this.imgOil = repo.getOilImage();
+        this.imgHoney = repo.getHoneyImage();
     }
     
     @Override
