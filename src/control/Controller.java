@@ -15,8 +15,8 @@ public class Controller implements KeyListener {
 
     Game game;
 
-    public Controller() {
-        Game game = Game.getInstance();
+    public Controller(Game game) {
+        this.game = game;
         game.watcher = Watcher.getInstance();
     }
 
