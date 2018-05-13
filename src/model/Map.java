@@ -44,4 +44,12 @@ public class Map {
     public List<Crate> getCrates() {
         return crates;
     }
+    
+    public int getWidth(){
+        return fields.length;
+    }
+    
+    public int getHeight(){
+        return fields[0].length;
+    }
 }
