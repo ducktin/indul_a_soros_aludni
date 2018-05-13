@@ -54,8 +54,13 @@ public class ImageRepository {
         return img;
     }
     
-    public Image getSwitchImage(){
-        Image img = getImage("pics/Switch_2.png", "switch");
+    public Image getSwitchOnImage(){
+        Image img = getImage("pics/Switch_HD_GREEN.png", "switchOn");
+        return img;
+    }
+    
+    public Image getSwitchOffImage(){
+        Image img = getImage("pics/Switch_HD_RED.png", "switchOff");
         return img;
     }
     
