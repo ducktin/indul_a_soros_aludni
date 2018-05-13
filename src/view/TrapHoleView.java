@@ -1,17 +1,17 @@
 package view;
 
-import model.Switch;
+import model.TrapHole;
 
 import java.awt.*;
 
-public class SwitchGraphic implements Drawable {
+public class TrapHoleView implements Drawable {
     
-    protected Switch aSwitch;
+    protected TrapHole trapHole;
     protected Image img;
+    
     
     @Override
     public void draw(Graphics g) {
-    
     
     }
 }

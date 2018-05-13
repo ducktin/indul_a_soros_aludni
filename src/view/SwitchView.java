@@ -1,17 +1,17 @@
 package view;
 
-import model.Worker;
+import model.Switch;
 
 import java.awt.*;
 
-public class WorkerGraphic implements Drawable {
+public class SwitchView implements Drawable {
     
-    protected Worker worker;
+    protected Switch aSwitch;
     protected Image img;
-    
     
     @Override
     public void draw(Graphics g) {
+    
     
     }
 }

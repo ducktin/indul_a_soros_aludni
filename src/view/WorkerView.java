@@ -1,12 +1,12 @@
 package view;
 
-import model.TrapHole;
+import model.Worker;
 
 import java.awt.*;
 
-public class TrapHoleGraphic implements Drawable {
+public class WorkerView implements Drawable {
     
-    protected TrapHole trapHole;
+    protected Worker worker;
     protected Image img;
     
     
