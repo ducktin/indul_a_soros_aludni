@@ -52,7 +52,7 @@ public class GameBoard extends JPanel {
     }
     
     @Override
-    public void paintComponent(Graphics g) {
+    public void paint(Graphics g) {
         super.paint(g);
         drawMap(g);
     }
