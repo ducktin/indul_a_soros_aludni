@@ -1,13 +1,14 @@
 package view;
 
-import model.Crate;
+import model.GoalField;
 
 import java.awt.*;
 
-public class CrateGraphic implements Drawable {
-
-    protected Crate crate;
+public class GoalFieldView implements Drawable {
+    
+    protected GoalField goalField;
     protected Image img;
+    
     
     @Override
     public void draw(Graphics g) {

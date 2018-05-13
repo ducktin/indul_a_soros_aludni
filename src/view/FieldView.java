@@ -4,7 +4,7 @@ import model.Field;
 
 import java.awt.*;
 
-public class FieldGraphic implements Drawable {
+public class FieldView implements Drawable {
 
     protected Field field;
     protected Image imgBase;
