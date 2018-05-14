@@ -22,7 +22,7 @@ public class Menu extends JFrame {
         
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(new Dimension(400, 100));
-        this.setTitle("SOK VOLT MÁN");
+        this.setTitle("SOKOBANN");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         
