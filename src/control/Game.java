@@ -12,6 +12,7 @@ public class Game {
     private boolean started = false;
     private int width = 0;
     private int height = 0;
+    private static int globPlayNum = 1;
     
     public boolean getStarted() {
         return started;
@@ -24,8 +25,10 @@ public class Game {
     public static Game getInstance() {
         if (instance == null) {
             instance = new Game();
+            globPlayNum=1;
         }
         return instance;
+
     }
     public static void destroyGame(){
         instance = null;
@@ -98,6 +101,8 @@ public class Game {
                     map.addWorker(worker);
                     field.setContent(worker);
                     watcher.increaseWorkers();
+                    worker.setPlayerNum(globPlayNum);
+                    globPlayNum++;
                     break;
                 case "G":
                     map.addField(x, y, new GoalField(content));

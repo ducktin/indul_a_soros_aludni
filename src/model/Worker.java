@@ -9,8 +9,7 @@ public class Worker implements Squeezable, Pushable {
     private int strength;
     private int honeyBombs = 3;
     private int oilBarrels = 3;
-    private int playerNum =1;
-    private static int globPlayNum=1;
+    private int playerNum;
     private static int instances = 0;
 
     private static String nextName() {
@@ -27,13 +26,13 @@ public class Worker implements Squeezable, Pushable {
         this.name = name;
         this.watcher = Watcher.getInstance();
         this.strength = strength;
-        this.playerNum =globPlayNum;
-        globPlayNum++;
     }
 
     public int getPlayerNum(){
      return playerNum;
     }
+
+    public void setPlayerNum(int num){this.playerNum=num;}
 
     public void move(Direction direction) {
         System.out.println("model.Worker, " + this.name + ", move, " + currentField.getName());
