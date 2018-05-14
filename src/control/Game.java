@@ -31,65 +31,6 @@ public class Game {
         instance = null;
     }
     
-    public void executeCommand(String command) {
-        switch (command) {
-            //Player No.1
-            case "w":
-                map.moveWorker(0, Direction.UP);
-                break;
-            case "a":
-                map.moveWorker(0, Direction.LEFT);
-                break;
-            case "d":
-                map.moveWorker(0, Direction.RIGHT);
-                break;
-            case "s":
-                map.moveWorker(0, Direction.DOWN);
-                break;
-            case "x":
-                map.getWorkers().get(0).dropOil();
-                break;
-            case "y":
-                map.getWorkers().get(0).dropHoney();
-                break;
-            //Player No.2
-            case "i":
-                map.moveWorker(1, Direction.UP);
-                break;
-            case "j":
-                map.moveWorker(1, Direction.LEFT);
-                break;
-            case "l":
-                map.moveWorker(1, Direction.RIGHT);
-                break;
-            case "k":
-                map.moveWorker(1, Direction.DOWN);
-                break;
-            case "n":
-                map.getWorkers().get(1).dropOil();
-                break;
-            case "m":
-                map.getWorkers().get(1).dropHoney();
-                break;
-            case "^":
-                map.moveWorker(2, Direction.UP);
-                break;
-            case "<-":
-                map.moveWorker(2, Direction.LEFT);
-                break;
-            case "->":
-                map.moveWorker(3, Direction.RIGHT);
-                break;
-            case "v":
-                map.moveWorker(3, Direction.DOWN);
-                break;
-                
-            default:
-                break;
-        }
-        drawConsole();
-    }
-    
     private void readDimensions(Scanner in) {
         String[] line = in.nextLine().split(" ");
         width = Integer.parseInt(line[0]);

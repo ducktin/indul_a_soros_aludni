@@ -73,6 +73,11 @@ public class ImageRepository {
         Image img = getImage("pics/HD_WORKER_DLC.png", "worker");
         return img;
     }
+
+    public Image getWorkerImageRedDlc(){
+        Image img = getImage("pics/HD_WORKER_2_DLC.png", "workerDlc");
+        return img;
+    }
     
     private Image getImage(String imagePath, String mapPath) {
         Image img = imageMap.get(mapPath);

@@ -3,7 +3,6 @@ package view;
 import model.*;
 
 import java.awt.*;
-import java.awt.image.ImageObserver;
 
 public class FieldView implements Drawable {
     
@@ -51,7 +50,7 @@ public class FieldView implements Drawable {
             cv.draw(g);
         }
         if (item instanceof Worker){
-            WorkerView wv = new WorkerView((Worker) item, this.x, this.y);
+            WorkerView wv = new WorkerView((Worker) item, this.x, this.y, ((Worker) item).getPlayerNum());
             wv.draw(g);
         }
     }

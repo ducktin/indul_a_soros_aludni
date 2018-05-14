@@ -55,9 +55,15 @@ public class GameBoard extends JPanel {
         super.paint(g);
         initDrawables(this.game);
         drawMap(g);
+        int playerNum = 1;
+        for (Worker worker: game.getMap().getWorkers()) {
+            g.setColor(new Color(255, 255, 255));
+            g.drawString("Player" + playerNum +" point: " + worker.getPoints(), 15, playerNum*15);
+            playerNum++;
+        }
         if(!game.getStarted()){
             g.setColor(new Color(255, 0, 0));
-            g.drawString("Over", 15, 20);
+            g.drawString("Over", 15, 50);
         }
     }
     

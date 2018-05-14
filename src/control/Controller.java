@@ -86,6 +86,12 @@ public class Controller implements KeyListener {
             case KeyEvent.VK_DOWN:
                 game.map.moveWorker(2, Direction.DOWN);
                 break;
+            case KeyEvent.VK_NUMPAD1:
+                game.map.getWorkers().get(2).dropOil();
+                break;
+            case KeyEvent.VK_NUMPAD2:
+                game.map.getWorkers().get(2).dropHoney();
+                break;
             case KeyEvent.VK_T:
                 try {
                     Desktop.getDesktop().browse(new URL("https://www.youtube.com/watch?v=dQw4w9WgXcQ").toURI());

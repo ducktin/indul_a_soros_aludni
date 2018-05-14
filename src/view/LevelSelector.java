@@ -16,7 +16,7 @@ public class LevelSelector extends JFrame {
     public LevelSelector() {
         
         this.setDefaultCloseOperation(LevelSelector.DISPOSE_ON_CLOSE);
-        this.setSize(new Dimension(475, MapList.options.length * 40));
+        this.setSize(new Dimension(550, MapList.options.length * 40));
         this.setTitle("Level selector");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
